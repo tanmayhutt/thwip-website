@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>thwip - Universal Coding Agent Multiplexer</title>
+  <title>thwip | The open source AI coding agent multiplexer</title>
   <meta name="description" content="Detect all installed AI coding agents on your machine, combine them in a unified terminal REPL, and hot-swap models mid-conversation without losing context.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,34 +12,49 @@
   <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
-  <!-- Background Glow FX -->
-  <div class="bg-glow bg-glow-1"></div>
-  <div class="bg-glow bg-glow-2"></div>
   <div class="bg-grid"></div>
 
   <!-- Navigation -->
   <header class="navbar">
     <div class="container nav-container">
-      <a href="#" class="nav-brand">
-        <span class="brand-badge">CLI</span>
-        <span class="brand-text">thwip</span>
+      <a href="/" class="nav-brand">
+        <!-- Geometric Pixel Block Logo for thwip -->
+        <svg class="logo-svg" width="120" height="28" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- T -->
+          <rect x="0" y="2" width="18" height="4" fill="#F1ECEC"/>
+          <rect x="7" y="6" width="4" height="18" fill="#F1ECEC"/>
+          <!-- H -->
+          <rect x="24" y="2" width="4" height="22" fill="#F1ECEC"/>
+          <rect x="24" y="12" width="14" height="4" fill="#F1ECEC"/>
+          <rect x="34" y="2" width="4" height="22" fill="#F1ECEC"/>
+          <!-- W -->
+          <rect x="44" y="2" width="4" height="18" fill="#F1ECEC"/>
+          <rect x="44" y="20" width="18" height="4" fill="#F1ECEC"/>
+          <rect x="51" y="10" width="4" height="10" fill="#4285F4"/>
+          <rect x="58" y="2" width="4" height="18" fill="#F1ECEC"/>
+          <!-- I -->
+          <rect x="68" y="2" width="4" height="4" fill="#D97757"/>
+          <rect x="68" y="8" width="4" height="16" fill="#F1ECEC"/>
+          <!-- P -->
+          <rect x="78" y="2" width="4" height="22" fill="#F1ECEC"/>
+          <rect x="78" y="2" width="14" height="4" fill="#F1ECEC"/>
+          <rect x="88" y="6" width="4" height="8" fill="#10A37F"/>
+          <rect x="78" y="14" width="14" height="4" fill="#F1ECEC"/>
+        </svg>
       </a>
 
       <nav class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#demo">Live Demo</a>
-        <a href="#providers">Providers</a>
+        <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI</a>
+        <a href="#what">Architecture</a>
+        <a href="#demo">Demo</a>
         <a href="#commands">Commands</a>
-        <a href="#install">Install</a>
       </nav>
 
       <div class="nav-actions">
-        <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer" class="btn btn-github">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
-          </svg>
+        <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer" class="btn-cta">
           <span>GitHub</span>
-          <span class="badge-tag">v1.0</span>
+          <span style="color: var(--text-dim); font-size: 11px;">v1.0.0</span>
         </a>
       </div>
     </div>
@@ -48,302 +63,216 @@
   <main>
     <!-- Hero Section -->
     <section class="hero-section">
-      <div class="container hero-container">
-        <div class="hero-tag">
-          <span class="tag-dot"></span>
-          <span>Universal Coding Agent Multiplexer</span>
+      <div class="container">
+        <div class="desktop-app-banner">
+          <span class="banner-badge">New</span>
+          <span>Universal coding agent multiplexer.</span>
+          <a href="#demo" class="banner-link">Watch live hot-swap demo</a>
         </div>
 
-        <h1 class="hero-title">
-          One Terminal. Every Agent.<br>
-          <span class="gradient-text">Zero Lost Flow.</span>
-        </h1>
-
+        <h1 class="hero-title">The open source AI coding agent multiplexer</h1>
+        
         <p class="hero-subtitle">
-          Auto-detect every AI coding agent on your device. Combine them in a unified terminal interface,
-          and hot-swap models mid-conversation when hitting rate limits without losing context, files, or reasoning.
+          Free local models included or connect any model from any provider, including Claude, GPT, Gemini, DeepSeek, and Groq without losing context or flow.
         </p>
 
-        <!-- Quick Install Bar -->
-        <div class="hero-cta-group">
-          <div class="quick-install-box">
-            <span class="prompt-prefix">$</span>
-            <code id="hero-command">pip install thwip-cli</code>
-            <button class="btn-copy" id="hero-copy-btn" aria-label="Copy install command">
-              <span class="copy-text">Copy</span>
+        <!-- OpenCode Style Installation Box -->
+        <div class="installation-box">
+          <div class="install-tabs-header">
+            <button class="install-tab-btn active" data-cmd="pip install thwip-cli" data-target="pip">pip</button>
+            <button class="install-tab-btn" data-cmd="uv tool install thwip-cli" data-target="uv">uv</button>
+            <button class="install-tab-btn" data-cmd="curl -fsSL https://raw.githubusercontent.com/tanmayhutt/thwip-cli/main/install.sh | bash" data-target="curl">curl</button>
+            <button class="install-tab-btn" data-cmd="pipx install thwip-cli" data-target="pipx">pipx</button>
+            <button class="install-tab-btn" data-cmd="git clone https://github.com/tanmayhutt/thwip-cli.git" data-target="git">git</button>
+          </div>
+
+          <div class="install-command-panel">
+            <div class="command-snippet">
+              <span class="cmd-prefix">$</span>
+              <span id="active-install-cmd" class="cmd-highlight">pip install thwip-cli</span>
+            </div>
+            <button class="btn-copy-box" id="btn-copy-install" aria-label="Copy install command">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span id="copy-label">Copy</span>
             </button>
           </div>
-          <a href="#demo" class="btn btn-secondary">
-            <span>Watch Live Hot-Swap Demo</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-        </div>
-
-        <!-- Provider Badges Strip -->
-        <div class="providers-strip">
-          <span class="strip-label">Multiplexing Across:</span>
-          <div class="strip-badges">
-            <span class="p-badge p-anthropic">Anthropic Claude</span>
-            <span class="p-badge p-google">Google Antigravity</span>
-            <span class="p-badge p-openai">OpenAI Codex</span>
-            <span class="p-badge p-deepseek">DeepSeek R1</span>
-            <span class="p-badge p-groq">Groq LPU</span>
-            <span class="p-badge p-ollama">Ollama Local</span>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- Interactive Live Terminal Demo Section -->
+    <!-- Terminal Live Simulation Section -->
     <section id="demo" class="demo-section">
       <div class="container">
-        <div class="section-header">
-          <div class="section-badge">INTERACTIVE SIMULATION</div>
-          <h2 class="section-title">See Hot-Swapping in Action</h2>
-          <p class="section-subtitle">
-            Experience how thwip handles rate limits seamlessly: starting with Claude Sonnet, catching HTTP 429,
-            switching to Gemini 2.5 Pro, and running tests without restarting.
-          </p>
-        </div>
-
         <div class="terminal-wrapper">
-          <div class="terminal-window">
-            <div class="terminal-header">
-              <div class="terminal-controls">
-                <span class="control-dot dot-red"></span>
-                <span class="control-dot dot-yellow"></span>
-                <span class="control-dot dot-green"></span>
-              </div>
-              <div class="terminal-title">
-                <span id="term-status-badge" class="term-badge badge-anthropic">Anthropic Claude</span>
-                <span class="term-session">thwip ~/Developer/Projects/backend [session: auth-refactor]</span>
-              </div>
-              <div class="terminal-actions">
-                <button id="demo-replay-btn" class="btn-term-action">Replay Flow</button>
-              </div>
+          <div class="terminal-header">
+            <div class="terminal-controls">
+              <span class="control-dot active-dot"></span>
+              <span class="control-dot"></span>
+              <span class="control-dot"></span>
             </div>
-
-            <div class="terminal-body" id="terminal-screen">
-              <!-- Terminal content will be dynamically generated by terminal-demo.js -->
+            <div class="terminal-title">
+              <span id="term-status-badge" class="term-badge badge-anthropic">Anthropic Claude</span>
+              <span>thwip ~/Developer/Projects/backend [session: auth-refactor]</span>
             </div>
+            <div>
+              <button id="demo-replay-btn" class="btn-term-action">Replay Flow</button>
+            </div>
+          </div>
 
-            <div class="terminal-statusbar" id="terminal-status-bar">
-              <div class="status-left">
-                <span id="bar-agent-label" class="status-agent" style="color: #D97757;">claude</span>
-                <span class="status-sep">|</span>
-                <span id="bar-model-label" class="status-model">claude-sonnet-4</span>
-                <span class="status-sep">|</span>
-                <span class="status-caps" id="bar-caps">
-                  <span class="cap-item cap-active">[chat]</span>
-                  <span class="cap-item cap-active">[edit]</span>
-                  <span class="cap-item cap-active">[run]</span>
-                  <span class="cap-item cap-active">[term]</span>
-                  <span class="cap-item cap-active">[git]</span>
-                </span>
-              </div>
-              <div class="status-right">
-                <span id="bar-tokens">1,482 tok</span>
-                <span class="status-sep">|</span>
-                <span id="bar-cost">$0.0084</span>
-              </div>
+          <div class="terminal-body" id="terminal-screen">
+            <!-- Terminal content generated dynamically -->
+          </div>
+
+          <div class="terminal-statusbar" id="terminal-status-bar">
+            <div class="status-left">
+              <span id="bar-agent-label" class="status-agent" style="color: #D97757;">claude</span>
+              <span class="status-sep">|</span>
+              <span id="bar-model-label" class="status-model">claude-sonnet-4</span>
+              <span class="status-sep">|</span>
+              <span class="status-caps" id="bar-caps">
+                <span class="cap-item cap-active">[chat]</span>
+                <span class="cap-item cap-active">[edit]</span>
+                <span class="cap-item cap-active">[run]</span>
+                <span class="cap-item cap-active">[term]</span>
+                <span class="cap-item cap-active">[git]</span>
+              </span>
+            </div>
+            <div class="status-right">
+              <span id="bar-tokens">1,482 tok</span>
+              <span class="status-sep">|</span>
+              <span id="bar-cost">$0.0084</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Key Features Grid -->
-    <section id="features" class="features-section">
+    <!-- What is thwip? (OpenCode Style Section) -->
+    <section id="what" class="what-section">
       <div class="container">
-        <div class="section-header">
-          <div class="section-badge">CORE CAPABILITIES</div>
-          <h2 class="section-title">Built for Real Developer Workflows</h2>
-          <p class="section-subtitle">
-            Every feature designed to eliminate context loss, tool fragmentation, and rate limit friction.
-          </p>
+        <div class="section-headline">
+          <h3>What is thwip?</h3>
+          <p>thwip is an open source coding agent multiplexer that connects all local AI models into a unified terminal workspace.</p>
         </div>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <ul class="what-list">
+          <li class="what-item">
+            <span class="item-bullet">[*]</span>
+            <div class="item-content">
+              <strong>Auto-Detection</strong>
+              <p>Discovers CLI agents (claude, agy, gemini, codex, aider, ollama), IDE apps (Cursor, Windsurf), and VS Code extensions.</p>
             </div>
-            <h3>System-Wide Auto-Detection</h3>
-            <p>
-              Scans your PATH, macOS applications, and VS Code extensions to discover installed tools
-              (Claude Code, Antigravity, Codex, Aider, Ollama) and automatically reads configured credentials.
-            </p>
-          </div>
+          </li>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#10A37F" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+          <li class="what-item">
+            <span class="item-bullet">[*]</span>
+            <div class="item-content">
+              <strong>Zero Context Loss</strong>
+              <p>Switch between Claude, Gemini, OpenAI, or Ollama mid-project without losing conversational memory, reasoning, or files.</p>
             </div>
-            <h3>Zero Context Loss Portability</h3>
-            <p>
-              When switching models with <code>/switch</code> or <code>Ctrl+S</code>, your entire message history,
-              reasoning deltas, file diffs, and pending tasks hand off directly to the new model.
-            </p>
-          </div>
+          </li>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D97757" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <li class="what-item">
+            <span class="item-bullet">[*]</span>
+            <div class="item-content">
+              <strong>Rate Limit Failover</strong>
+              <p>Detects HTTP 429 errors or quota exhaustion and prompts instant one-key switching to ready fallback models.</p>
             </div>
-            <h3>Automatic Rate-Limit Failover</h3>
-            <p>
-              Catches HTTP 429 quota exhaustion errors mid-stream and offers instant one-key switching
-              to ready fallback models so your coding session never breaks.
-            </p>
-          </div>
+          </li>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          <li class="what-item">
+            <span class="item-bullet">[*]</span>
+            <div class="item-content">
+              <strong>Shared Tool Layer</strong>
+              <p>Every connected agent gains safe file editing, sandboxed Python and Node execution, shell commands, and Git ops.</p>
             </div>
-            <h3>Dynamic UI (DUI) Adaptation</h3>
-            <p>
-              The terminal styling adapts dynamically to active provider colors, displays verified
-              capabilities, and highlights warnings if an agent lacks file editing or execution power.
-            </p>
-          </div>
+          </li>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4D6BFE" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+          <li class="what-item">
+            <span class="item-bullet">[*]</span>
+            <div class="item-content">
+              <strong>Dynamic DUI</strong>
+              <p>Terminal interface adapts its theme colors, headers, and status bars to match the active provider branding and real capabilities.</p>
             </div>
-            <h3>Shared Tool Layer</h3>
-            <p>
-              Every connected agent gains unified access to safe file editing, sandboxed Python and Node execution,
-              shell terminal commands, and Git operations within project bounds.
-            </p>
-          </div>
+          </li>
 
-          <div class="feature-card">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF7000" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          <li class="what-item">
+            <span class="item-bullet">[*]</span>
+            <div class="item-content">
+              <strong>Local & Offline</strong>
+              <p>Integrates directly with local Ollama instances for unlimited, offline coding with zero API keys required.</p>
             </div>
-            <h3>Session Persistence</h3>
-            <p>
-              Save and resume work sessions with <code>/session save</code> and <code>/session load</code>.
-              Complete with token tracking, cumulative cost estimations, and history logs.
-            </p>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
 
-    <!-- Supported Providers Matrix -->
-    <section id="providers" class="providers-section">
+    <!-- Technical Schematics / Figures (OpenCode Style) -->
+    <section class="figures-section">
       <div class="container">
-        <div class="section-header">
-          <div class="section-badge">ECOSYSTEM</div>
-          <h2 class="section-title">Supported Providers and Models</h2>
-          <p class="section-subtitle">
-            Direct SDK and API connectivity with transparent capability mapping.
-          </p>
+        <div class="section-headline">
+          <h3>Multiplexer Architecture</h3>
+          <p>Built for reliability, speed, and cross-provider interoperability.</p>
         </div>
 
-        <div class="providers-grid">
-          <div class="provider-card card-anthropic">
-            <div class="p-card-header">
-              <h4>Anthropic</h4>
-              <span class="p-card-tag">Claude Code</span>
+        <div class="figures-grid">
+          <div class="figure-card">
+            <div class="figure-diagram">
+              <svg width="180" height="90" viewBox="0 0 180 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="10" y="35" width="40" height="20" fill="#181716" stroke="#4285F4"/>
+                <rect x="70" y="10" width="40" height="20" fill="#181716" stroke="#D97757"/>
+                <rect x="70" y="60" width="40" height="20" fill="#181716" stroke="#10A37F"/>
+                <rect x="130" y="35" width="40" height="20" fill="#181716" stroke="#F1ECEC"/>
+                <path d="M50 45H70M110 20L130 40M110 70L130 50" stroke="#8E8B8B" stroke-width="1.5"/>
+              </svg>
             </div>
-            <p class="p-card-models">Claude 3.7 Sonnet, Claude 3.5 Sonnet, Claude Opus</p>
-            <div class="p-card-caps">
-              <span class="cap-pill">Chat</span>
-              <span class="cap-pill">File Edit</span>
-              <span class="cap-pill">Code Run</span>
-              <span class="cap-pill">Terminal</span>
-              <span class="cap-pill">Thinking</span>
-            </div>
-          </div>
-
-          <div class="provider-card card-google">
-            <div class="p-card-header">
-              <h4>Google</h4>
-              <span class="p-card-tag">Antigravity / Gemini</span>
-            </div>
-            <p class="p-card-models">Gemini 2.5 Pro, 2.5 Flash, 2.0 Flash Thinking</p>
-            <div class="p-card-caps">
-              <span class="cap-pill">Chat</span>
-              <span class="cap-pill">File Edit</span>
-              <span class="cap-pill">Code Run</span>
-              <span class="cap-pill">Terminal</span>
-              <span class="cap-pill">Search</span>
+            <div class="figure-meta">
+              <figure>Fig 1.</figure> <strong>Multi-Agent Handoff</strong>
+              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Seamless state migration across provider APIs.</div>
             </div>
           </div>
 
-          <div class="provider-card card-openai">
-            <div class="p-card-header">
-              <h4>OpenAI</h4>
-              <span class="p-card-tag">Codex / ChatGPT</span>
+          <div class="figure-card">
+            <div class="figure-diagram">
+              <svg width="180" height="90" viewBox="0 0 180 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="20" width="140" height="50" fill="#141312" stroke="#33302D"/>
+                <line x1="20" y1="45" x2="160" y2="45" stroke="#33302D"/>
+                <line x1="65" y1="20" x2="65" y2="70" stroke="#33302D"/>
+                <line x1="115" y1="20" x2="115" y2="70" stroke="#33302D"/>
+                <circle cx="42" cy="32" r="4" fill="#4ADE80"/>
+                <circle cx="90" cy="32" r="4" fill="#4285F4"/>
+                <circle cx="138" cy="32" r="4" fill="#D97757"/>
+              </svg>
             </div>
-            <p class="p-card-models">GPT-4.1, o3, o3-mini, GPT-4o, GPT-4o-mini</p>
-            <div class="p-card-caps">
-              <span class="cap-pill">Chat</span>
-              <span class="cap-pill">File Edit</span>
-              <span class="cap-pill">Code Run</span>
-              <span class="cap-pill">Terminal</span>
-              <span class="cap-pill">Reasoning</span>
-            </div>
-          </div>
-
-          <div class="provider-card card-deepseek">
-            <div class="p-card-header">
-              <h4>DeepSeek</h4>
-              <span class="p-card-tag">Reasoning Engine</span>
-            </div>
-            <p class="p-card-models">DeepSeek-V3, DeepSeek-R1 (Reasoner)</p>
-            <div class="p-card-caps">
-              <span class="cap-pill">Chat</span>
-              <span class="cap-pill">File Edit</span>
-              <span class="cap-pill">Code Run</span>
-              <span class="cap-pill">CoT Thinking</span>
+            <div class="figure-meta">
+              <figure>Fig 2.</figure> <strong>Universal Tool Engine</strong>
+              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Unified file edits, execution, and git operations.</div>
             </div>
           </div>
 
-          <div class="provider-card card-groq">
-            <div class="p-card-header">
-              <h4>Groq</h4>
-              <span class="p-card-tag">Fast LPU</span>
+          <div class="figure-card">
+            <div class="figure-diagram">
+              <svg width="180" height="90" viewBox="0 0 180 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 70L50 50L80 60L110 30L140 40L160 15" stroke="#F1ECEC" stroke-width="1.5"/>
+                <circle cx="110" cy="30" r="4" fill="#EAB308"/>
+                <line x1="110" y1="30" x2="110" y2="80" stroke="#EAB308" stroke-dasharray="2 2"/>
+              </svg>
             </div>
-            <p class="p-card-models">Llama 3.3 70B Versatile, Mixtral 8x7B</p>
-            <div class="p-card-caps">
-              <span class="cap-pill">Chat</span>
-              <span class="cap-pill">File Edit</span>
-              <span class="cap-pill">Code Run</span>
-              <span class="cap-pill">500+ tok/s</span>
-            </div>
-          </div>
-
-          <div class="provider-card card-ollama">
-            <div class="p-card-header">
-              <h4>Ollama</h4>
-              <span class="p-card-tag">Local & Offline</span>
-            </div>
-            <p class="p-card-models">Llama 3.3, Qwen 2.5 Coder, DeepSeek R1 Local</p>
-            <div class="p-card-caps">
-              <span class="cap-pill">Chat</span>
-              <span class="cap-pill">File Edit</span>
-              <span class="cap-pill">Zero Keys</span>
-              <span class="cap-pill">Unlimited</span>
+            <div class="figure-meta">
+              <figure>Fig 3.</figure> <strong>429 Failover Interceptor</strong>
+              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Instant hot-swap when provider quotas exhaust.</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Cheatsheet & Commands Section -->
+    <!-- Commands Table -->
     <section id="commands" class="commands-section">
       <div class="container">
-        <div class="section-header">
-          <div class="section-badge">TERMINAL SHORTCUTS</div>
-          <h2 class="section-title">Command Cheatsheet</h2>
-          <p class="section-subtitle">
-            Essential slash commands and ergonomics for keyboard-first developers.
-          </p>
+        <div class="section-headline">
+          <h3>Terminal Ergonomics</h3>
+          <p>Slash commands and shortcuts designed for keyboard-first developers.</p>
         </div>
 
         <div class="commands-table-wrapper">
@@ -377,19 +306,9 @@
                 <td><code>/limits</code></td>
               </tr>
               <tr>
-                <td><code>/detect</code></td>
-                <td>Re-scan system for newly installed coding agents or CLI binaries</td>
-                <td><code>/detect</code></td>
-              </tr>
-              <tr>
                 <td><code>/session save [name]</code></td>
-                <td>Persist current conversation, file modifications, and state to disk</td>
+                <td>Persist current conversation and file modifications to disk</td>
                 <td><code>/session save auth-refactor</code></td>
-              </tr>
-              <tr>
-                <td><code>/session load &lt;name&gt;</code></td>
-                <td>Restore saved conversation and seamlessly resume coding</td>
-                <td><code>/session load auth-refactor</code></td>
               </tr>
               <tr>
                 <td><code>Ctrl + S</code></td>
@@ -401,86 +320,8 @@
                 <td>Display current agent status and token counters</td>
                 <td>Hotkey</td>
               </tr>
-              <tr>
-                <td><code>Ctrl + H</code></td>
-                <td>View message history with provider attribution badges</td>
-                <td>Hotkey</td>
-              </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- Installation Hub Section -->
-    <section id="install" class="install-section">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-badge">GETTING STARTED</div>
-          <h2 class="section-title">Install thwip in Seconds</h2>
-          <p class="section-subtitle">
-            Choose your preferred package manager or installer.
-          </p>
-        </div>
-
-        <div class="install-card">
-          <div class="install-tabs">
-            <button class="install-tab active" data-target="tab-pip">pip</button>
-            <button class="install-tab" data-target="tab-uv">uv</button>
-            <button class="install-tab" data-target="tab-pipx">pipx</button>
-            <button class="install-tab" data-target="tab-curl">curl script</button>
-            <button class="install-tab" data-target="tab-git">git clone</button>
-          </div>
-
-          <div class="install-tab-content">
-            <div id="tab-pip" class="tab-pane active">
-              <div class="code-block-wrapper">
-                <code>pip install thwip-cli</code>
-                <button class="btn-copy-code" data-code="pip install thwip-cli">Copy</button>
-              </div>
-              <p class="tab-note">Installs thwip into your global or active Python environment.</p>
-            </div>
-
-            <div id="tab-uv" class="tab-pane">
-              <div class="code-block-wrapper">
-                <code>uv tool install thwip-cli</code>
-                <button class="btn-copy-code" data-code="uv tool install thwip-cli">Copy</button>
-              </div>
-              <p class="tab-note">Fastest isolated CLI installation via Astral's uv.</p>
-            </div>
-
-            <div id="tab-pipx" class="tab-pane">
-              <div class="code-block-wrapper">
-                <code>pipx install thwip-cli</code>
-                <button class="btn-copy-code" data-code="pipx install thwip-cli">Copy</button>
-              </div>
-              <p class="tab-note">Installs thwip globally in an isolated sandbox environment.</p>
-            </div>
-
-            <div id="tab-curl" class="tab-pane">
-              <div class="code-block-wrapper">
-                <code>curl -fsSL https://raw.githubusercontent.com/tanmayhutt/thwip-cli/main/install.sh | bash</code>
-                <button class="btn-copy-code" data-code="curl -fsSL https://raw.githubusercontent.com/tanmayhutt/thwip-cli/main/install.sh | bash">Copy</button>
-              </div>
-              <p class="tab-note">One-liner script for macOS and Linux systems.</p>
-            </div>
-
-            <div id="tab-git" class="tab-pane">
-              <div class="code-block-wrapper">
-                <code>git clone https://github.com/tanmayhutt/thwip-cli.git && cd thwip-cli && pip install -e .</code>
-                <button class="btn-copy-code" data-code="git clone https://github.com/tanmayhutt/thwip-cli.git && cd thwip-cli && pip install -e .">Copy</button>
-              </div>
-              <p class="tab-note">Clone repository for local development and contributions.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="launch-card">
-          <h3>Launch thwip in any project:</h3>
-          <div class="code-block-wrapper launch-box">
-            <code>thwip</code>
-            <button class="btn-copy-code" data-code="thwip">Copy</button>
-          </div>
         </div>
       </div>
     </section>
@@ -489,15 +330,14 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="container footer-container">
-      <div class="footer-left">
-        <span class="footer-brand">thwip</span>
-        <span class="footer-copy">Universal Coding Agent Multiplexer</span>
+      <div>
+        <span style="font-weight: 700; color: #FFFFFF; font-family: var(--font-mono);">thwip</span>
+        <span style="color: var(--text-dim); margin-left: 8px; font-size: 13px;">Universal Coding Agent Multiplexer</span>
       </div>
       <div class="footer-links">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">CLI Repository</a>
         <a href="https://github.com/tanmayhutt/thwip-website" target="_blank" rel="noopener noreferrer">Website Repository</a>
-        <a href="#demo">Live Demo</a>
-        <a href="#install">Documentation</a>
+        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package</a>
       </div>
       <div class="footer-right">
         <span>MIT License</span>

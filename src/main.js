@@ -12,49 +12,42 @@ document.addEventListener('DOMContentLoaded', () => {
     demo.start();
   }
 
-  // 2. Install Tabs
-  const tabs = document.querySelectorAll('.install-tab');
-  tabs.forEach(tab => {
+  // 2. OpenCode Style Install Tabs
+  const installTabs = document.querySelectorAll('.install-tab-btn');
+  const activeInstallCmd = document.getElementById('active-install-cmd');
+  const copyBtn = document.getElementById('btn-copy-install');
+  const copyLabel = document.getElementById('copy-label');
+
+  installTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-
+      installTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      const targetId = tab.getAttribute('data-target');
-      const targetPane = document.getElementById(targetId);
-      if (targetPane) {
-        targetPane.classList.add('active');
+
+      const cmd = tab.getAttribute('data-cmd');
+      if (activeInstallCmd && cmd) {
+        activeInstallCmd.textContent = cmd;
       }
     });
   });
 
-  // 3. Copy Code Buttons
-  const copyButtons = document.querySelectorAll('.btn-copy, .btn-copy-code');
-  copyButtons.forEach(btn => {
-    btn.addEventListener('click', async () => {
-      let codeToCopy = btn.getAttribute('data-code');
-      if (!codeToCopy) {
-        const codeEl = btn.closest('.quick-install-box')?.querySelector('code');
-        if (codeEl) codeToCopy = codeEl.textContent.trim();
-      }
+  // 3. Copy Installation Command
+  if (copyBtn && activeInstallCmd) {
+    copyBtn.addEventListener('click', async () => {
+      const textToCopy = activeInstallCmd.textContent.trim();
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        if (copyLabel) copyLabel.textContent = 'Copied!';
+        copyBtn.style.borderColor = '#4ADE80';
+        copyBtn.style.color = '#4ADE80';
 
-      if (codeToCopy) {
-        try {
-          await navigator.clipboard.writeText(codeToCopy);
-          const originalText = btn.textContent;
-          btn.textContent = 'Copied!';
-          btn.style.color = '#4ADE80';
-          btn.style.borderColor = '#4ADE80';
-
-          setTimeout(() => {
-            btn.textContent = originalText;
-            btn.style.color = '';
-            btn.style.borderColor = '';
-          }, 2000);
-        } catch (err) {
-          console.error('Failed to copy: ', err);
-        }
+        setTimeout(() => {
+          if (copyLabel) copyLabel.textContent = 'Copy';
+          copyBtn.style.borderColor = '';
+          copyBtn.style.color = '';
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy command: ', err);
       }
     });
-  });
+  }
 });
