@@ -1,19 +1,39 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="32" height="32" rx="4" fill="#0C0B0A"/>
-  <!-- Central emitter / shooter node -->
-  <rect x="14" y="24" width="4" height="6" fill="#F1ECEC"/>
-  <rect x="12" y="22" width="8" height="2" fill="#D97757"/>
-  <!-- Web trajectory strands bursting upward and outward -->
-  <path d="M16 22L16 6" stroke="#F1ECEC" stroke-width="2" stroke-linecap="square"/>
-  <path d="M16 20L6 10" stroke="#F1ECEC" stroke-width="1.5" stroke-linecap="square"/>
-  <path d="M16 20L26 10" stroke="#F1ECEC" stroke-width="1.5" stroke-linecap="square"/>
-  <path d="M16 16L3 16" stroke="#8E8B8B" stroke-width="1.2" stroke-linecap="square"/>
-  <path d="M16 16L29 16" stroke="#8E8B8B" stroke-width="1.2" stroke-linecap="square"/>
-  <!-- Intersecting tensile web lattice arcs -->
-  <path d="M6 10L16 6L26 10" stroke="#4285F4" stroke-width="1.5" stroke-linecap="square" fill="none"/>
-  <path d="M3 16L16 12L29 16" stroke="#F1ECEC" stroke-width="1.2" stroke-linecap="square" fill="none"/>
-  <!-- Target contact points / nodes -->
-  <rect x="14.5" y="4.5" width="3" height="3" fill="#FFFFFF"/>
-  <rect x="4.5" y="8.5" width="3" height="3" fill="#4285F4"/>
-  <rect x="24.5" y="8.5" width="3" height="3" fill="#10A37F"/>
+  
+  <!-- Stylized Geometric Hand in Web-Shooting Pose -->
+  <!-- Wrist -->
+  <rect x="13" y="26" width="6" height="5" fill="#242220"/>
+  <!-- Palm Base -->
+  <path d="M11 21C11 25 21 25 21 21V18H11V21Z" fill="#1E1D1B" stroke="#8E8B8B" stroke-width="1"/>
+  
+  <!-- Thumb (spread left) -->
+  <path d="M11 22L7 19L8.5 17L12 20" stroke="#F1ECEC" stroke-width="1.5" stroke-linecap="square"/>
+  
+  <!-- Index finger (extended up-left) -->
+  <path d="M12 18L10 10" stroke="#F1ECEC" stroke-width="2" stroke-linecap="square"/>
+  
+  <!-- Folded Middle & Ring Fingers pressing palm center -->
+  <rect x="13.5" y="19" width="2.2" height="3.5" fill="#B7B1B1"/>
+  <rect x="16.3" y="19" width="2.2" height="3.5" fill="#B7B1B1"/>
+  <!-- Central emitter node -->
+  <rect x="14.5" y="17" width="3" height="2" fill="#D97757"/>
+
+  <!-- Pinky finger (extended up-right) -->
+  <path d="M20 18L22 10" stroke="#F1ECEC" stroke-width="2" stroke-linecap="square"/>
+
+  <!-- Dynamic Web Burst Lines radiating forward -->
+  <path d="M16 17L16 2" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="square"/>
+  <path d="M16 17L4 4" stroke="#F1ECEC" stroke-width="1.4" stroke-linecap="square"/>
+  <path d="M16 17L28 4" stroke="#F1ECEC" stroke-width="1.4" stroke-linecap="square"/>
+  
+  <!-- Tensile Web Lattice Strands -->
+  <path d="M4 4L16 1L28 4" stroke="#4285F4" stroke-width="1.2" stroke-linecap="square" fill="none"/>
+  <path d="M7 8L16 5L25 8" stroke="#F1ECEC" stroke-width="1.0" stroke-linecap="square" fill="none"/>
+  <path d="M10 12L16 9L22 12" stroke="#8E8B8B" stroke-width="0.8" stroke-linecap="square" fill="none"/>
+
+  <!-- Terminal Target Nodes -->
+  <rect x="14.5" y="0.5" width="3" height="3" fill="#FFFFFF"/>
+  <rect x="2.5" y="2.5" width="3" height="3" fill="#4285F4"/>
+  <rect x="26.5" y="2.5" width="3" height="3" fill="#10A37F"/>
 </svg>
