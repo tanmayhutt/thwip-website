@@ -1,39 +1,29 @@
 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="32" height="32" rx="4" fill="#0C0B0A"/>
+  <!-- Clean dark square tile -->
+  <rect width="32" height="32" rx="6" fill="#0C0B0A"/>
   
-  <!-- Stylized Geometric Hand in Web-Shooting Pose -->
-  <!-- Wrist -->
-  <rect x="13" y="26" width="6" height="5" fill="#242220"/>
-  <!-- Palm Base -->
-  <path d="M11 21C11 25 21 25 21 21V18H11V21Z" fill="#1E1D1B" stroke="#8E8B8B" stroke-width="1"/>
+  <!-- Geometric Radial Web Lattice -->
+  <!-- 8 Radial Structural Strands -->
+  <line x1="16" y1="3" x2="16" y2="29" stroke="#F1ECEC" stroke-width="1.4" stroke-linecap="square"/>
+  <line x1="3" y1="16" x2="29" y2="16" stroke="#F1ECEC" stroke-width="1.4" stroke-linecap="square"/>
+  <line x1="6.8" y1="6.8" x2="25.2" y2="25.2" stroke="#8E8B8B" stroke-width="1.1" stroke-linecap="square"/>
+  <line x1="25.2" y1="6.8" x2="6.8" y2="25.2" stroke="#8E8B8B" stroke-width="1.1" stroke-linecap="square"/>
   
-  <!-- Thumb (spread left) -->
-  <path d="M11 22L7 19L8.5 17L12 20" stroke="#F1ECEC" stroke-width="1.5" stroke-linecap="square"/>
+  <!-- Outer Concentric Polygonal Web Ring -->
+  <polygon points="16,4 24.5,7.5 28,16 24.5,24.5 16,28 7.5,24.5 4,16 7.5,7.5" stroke="#F1ECEC" stroke-width="1.3" fill="none" stroke-linejoin="miter"/>
   
-  <!-- Index finger (extended up-left) -->
-  <path d="M12 18L10 10" stroke="#F1ECEC" stroke-width="2" stroke-linecap="square"/>
+  <!-- Middle Concentric Web Ring -->
+  <polygon points="16,9 21,11 23,16 21,21 16,23 11,21 9,16 11,11" stroke="#4285F4" stroke-width="1.1" fill="none" stroke-linejoin="miter"/>
   
-  <!-- Folded Middle & Ring Fingers pressing palm center -->
-  <rect x="13.5" y="19" width="2.2" height="3.5" fill="#B7B1B1"/>
-  <rect x="16.3" y="19" width="2.2" height="3.5" fill="#B7B1B1"/>
-  <!-- Central emitter node -->
-  <rect x="14.5" y="17" width="3" height="2" fill="#D97757"/>
-
-  <!-- Pinky finger (extended up-right) -->
-  <path d="M20 18L22 10" stroke="#F1ECEC" stroke-width="2" stroke-linecap="square"/>
-
-  <!-- Dynamic Web Burst Lines radiating forward -->
-  <path d="M16 17L16 2" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="square"/>
-  <path d="M16 17L4 4" stroke="#F1ECEC" stroke-width="1.4" stroke-linecap="square"/>
-  <path d="M16 17L28 4" stroke="#F1ECEC" stroke-width="1.4" stroke-linecap="square"/>
+  <!-- Inner Concentric Web Ring -->
+  <polygon points="16,13 18.5,14 19,16 18.5,18 16,19 13.5,18 13,16 13.5,14" stroke="#D97757" stroke-width="0.9" fill="none" stroke-linejoin="miter"/>
   
-  <!-- Tensile Web Lattice Strands -->
-  <path d="M4 4L16 1L28 4" stroke="#4285F4" stroke-width="1.2" stroke-linecap="square" fill="none"/>
-  <path d="M7 8L16 5L25 8" stroke="#F1ECEC" stroke-width="1.0" stroke-linecap="square" fill="none"/>
-  <path d="M10 12L16 9L22 12" stroke="#8E8B8B" stroke-width="0.8" stroke-linecap="square" fill="none"/>
-
-  <!-- Terminal Target Nodes -->
-  <rect x="14.5" y="0.5" width="3" height="3" fill="#FFFFFF"/>
-  <rect x="2.5" y="2.5" width="3" height="3" fill="#4285F4"/>
-  <rect x="26.5" y="2.5" width="3" height="3" fill="#10A37F"/>
+  <!-- Central Hub Node -->
+  <rect x="14.5" y="14.5" width="3" height="3" fill="#FFFFFF"/>
+  
+  <!-- Colored Vertex Nodes -->
+  <rect x="23.5" y="6.5" width="2" height="2" fill="#4285F4"/>
+  <rect x="6.5" y="6.5" width="2" height="2" fill="#D97757"/>
+  <rect x="23.5" y="23.5" width="2" height="2" fill="#10A37F"/>
+  <rect x="6.5" y="23.5" width="2" height="2" fill="#CFCECD"/>
 </svg>

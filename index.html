@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>thwip | The open source AI coding agent multiplexer</title>
-  <meta name="description" content="Detect all installed AI coding agents on your machine, combine them in a unified terminal REPL, and hot-swap models mid-conversation without losing context.">
+  <meta name="description" content="Universal coding agent multiplexer. Detect all installed AI coding agents on your machine, combine them into a unified terminal REPL, and hot-swap models mid-conversation with zero context loss.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,46 +14,36 @@
 <body>
   <div class="bg-grid"></div>
 
-  <!-- Navigation -->
+  <!-- Navigation Header -->
   <header class="navbar">
     <div class="container nav-container">
-      <a href="/" class="nav-brand">
-        <!-- Hand Web-Shooting Emblem + Wordmark Logo -->
-        <svg class="logo-svg" width="148" height="28" viewBox="0 0 148 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Stylized Hand Web-Shooting Emblem (Left) -->
-          <g transform="translate(0, 0)">
-            <!-- Wrist -->
-            <rect x="11" y="23" width="6" height="5" fill="#242220"/>
-            <!-- Palm Base -->
-            <path d="M9 18C9 22 19 22 19 18V15H9V18Z" fill="#181716" stroke="#8E8B8B" stroke-width="0.8"/>
-            <!-- Thumb (extended left) -->
-            <path d="M9 19L5 16.5L6.5 14.5L10 17.5" stroke="#F1ECEC" stroke-width="1.3" stroke-linecap="square"/>
-            <!-- Index Finger (extended up-left) -->
-            <path d="M10 15L8 7.5" stroke="#F1ECEC" stroke-width="1.8" stroke-linecap="square"/>
-            <!-- Folded Middle & Ring Fingers pressing palm center -->
-            <rect x="11.5" y="16" width="2" height="3" fill="#B7B1B1"/>
-            <rect x="14.2" y="16" width="2" height="3" fill="#B7B1B1"/>
-            <!-- Center Emitter Trigger -->
-            <rect x="12.5" y="14" width="2.8" height="1.8" fill="#D97757"/>
-            <!-- Pinky Finger (extended up-right) -->
-            <path d="M18 15L20 7.5" stroke="#F1ECEC" stroke-width="1.8" stroke-linecap="square"/>
-
-            <!-- Web Burst Strands radiating forward -->
-            <path d="M14 14L14 1.5" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="square"/>
-            <path d="M14 14L2.5 3.5" stroke="#F1ECEC" stroke-width="1.3" stroke-linecap="square"/>
-            <path d="M14 14L25.5 3.5" stroke="#F1ECEC" stroke-width="1.3" stroke-linecap="square"/>
-            <!-- Cross-Lattice Web Arcs -->
-            <path d="M2.5 3.5L14 0.8L25.5 3.5" stroke="#4285F4" stroke-width="1.1" stroke-linecap="square" fill="none"/>
-            <path d="M5.5 7L14 4L22.5 7" stroke="#F1ECEC" stroke-width="0.9" stroke-linecap="square" fill="none"/>
-            <path d="M8.5 10.5L14 8L19.5 10.5" stroke="#8E8B8B" stroke-width="0.7" stroke-linecap="square" fill="none"/>
-            <!-- Anchor Target Nodes -->
-            <rect x="12.5" y="0.2" width="3" height="3" fill="#FFFFFF"/>
-            <rect x="1" y="2" width="3" height="3" fill="#4285F4"/>
-            <rect x="24" y="2" width="3" height="3" fill="#10A37F"/>
+      <a href="/" class="nav-brand" aria-label="thwip home">
+        <!-- Clean Web Sign Emblem + Geometric Wordmark -->
+        <svg class="logo-svg" width="150" height="28" viewBox="0 0 150 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Web Sign Emblem (Left) -->
+          <g transform="translate(0, 1)">
+            <!-- Radial Web Strands -->
+            <line x1="13" y1="1" x2="13" y2="25" stroke="#F1ECEC" stroke-width="1.3" stroke-linecap="square"/>
+            <line x1="1" y1="13" x2="25" y2="13" stroke="#F1ECEC" stroke-width="1.3" stroke-linecap="square"/>
+            <line x1="4.5" y1="4.5" x2="21.5" y2="21.5" stroke="#8E8B8B" stroke-width="1.0" stroke-linecap="square"/>
+            <line x1="21.5" y1="4.5" x2="4.5" y2="21.5" stroke="#8E8B8B" stroke-width="1.0" stroke-linecap="square"/>
+            <!-- Outer Web Polygon -->
+            <polygon points="13,2 20.5,5 24,13 20.5,21 13,24 5.5,21 2,13 5.5,5" stroke="#F1ECEC" stroke-width="1.2" fill="none"/>
+            <!-- Middle Web Polygon -->
+            <polygon points="13,6 17.5,7.5 19.5,13 17.5,18.5 13,20 8.5,18.5 6.5,13 8.5,7.5" stroke="#4285F4" stroke-width="1.0" fill="none"/>
+            <!-- Inner Web Polygon -->
+            <polygon points="13,9 15.5,10 16.5,13 15.5,16 13,17 10.5,16 9.5,13 10.5,10" stroke="#D97757" stroke-width="0.8" fill="none"/>
+            <!-- Center Hub Node -->
+            <rect x="11.5" y="11.5" width="3" height="3" fill="#FFFFFF"/>
+            <!-- Color Anchor Nodes -->
+            <rect x="19.5" y="4" width="2" height="2" fill="#4285F4"/>
+            <rect x="4.5" y="4" width="2" height="2" fill="#D97757"/>
+            <rect x="19.5" y="20" width="2" height="2" fill="#10A37F"/>
+            <rect x="4.5" y="20" width="2" height="2" fill="#CFCECD"/>
           </g>
 
           <!-- Wordmark: thwip -->
-          <g transform="translate(34, 0)">
+          <g transform="translate(36, 0)">
             <!-- T -->
             <rect x="0" y="3" width="16" height="3.5" fill="#F1ECEC"/>
             <rect x="6.2" y="6.5" width="3.6" height="17.5" fill="#F1ECEC"/>
@@ -79,11 +69,12 @@
       </a>
 
       <nav class="nav-links">
+        <a href="#how-it-works">How It Works</a>
+        <a href="#demo">Live Demo</a>
+        <a href="#providers">Providers</a>
+        <a href="#commands">Navigation & Commands</a>
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI</a>
-        <a href="#what">Architecture</a>
-        <a href="#demo">Demo</a>
-        <a href="#commands">Commands</a>
       </nav>
 
       <div class="nav-actions">
@@ -100,18 +91,18 @@
     <section class="hero-section">
       <div class="container">
         <div class="desktop-app-banner">
-          <span class="banner-badge">New</span>
-          <span>Universal coding agent multiplexer.</span>
-          <a href="#demo" class="banner-link">Watch live hot-swap demo</a>
+          <span class="banner-badge">Release</span>
+          <span>thwip-cli v1.0.0 is live on PyPI.</span>
+          <a href="#how-it-works" class="banner-link">Explore documentation</a>
         </div>
 
         <h1 class="hero-title">The open source AI coding agent multiplexer</h1>
         
         <p class="hero-subtitle">
-          Free local models included or connect any model from any provider, including Claude, GPT, Gemini, DeepSeek, and Groq without losing context or flow.
+          Detect all installed AI coding agents on your machine, combine them in a unified terminal REPL, and hot-swap models mid-conversation without losing context, files, or execution state.
         </p>
 
-        <!-- OpenCode Style Installation Box -->
+        <!-- Segmented Installation Box -->
         <div class="installation-box">
           <div class="install-tabs-header">
             <button class="install-tab-btn active" data-cmd="pip install thwip-cli" data-target="pip">pip</button>
@@ -135,7 +126,7 @@
       </div>
     </section>
 
-    <!-- Terminal Live Simulation Section -->
+    <!-- Terminal Simulator Demo -->
     <section id="demo" class="demo-section">
       <div class="container">
         <div class="terminal-wrapper">
@@ -155,7 +146,7 @@
           </div>
 
           <div class="terminal-body" id="terminal-screen">
-            <!-- Terminal content generated dynamically -->
+            <!-- Dynamic interactive terminal simulation -->
           </div>
 
           <div class="terminal-statusbar" id="terminal-status-bar">
@@ -182,72 +173,72 @@
       </div>
     </section>
 
-    <!-- What is thwip? (OpenCode Style Section) -->
-    <section id="what" class="what-section">
+    <!-- How It Works (Comprehensive Architecture & Workflow) -->
+    <section id="how-it-works" class="what-section">
       <div class="container">
         <div class="section-headline">
-          <h3>What is thwip?</h3>
-          <p>thwip is an open source coding agent multiplexer that connects all local AI models into a unified terminal workspace.</p>
+          <h3>How thwip Works</h3>
+          <p>A unified multiplexing pipeline that turns fragmented agents and models into one cohesive, resilient terminal development environment.</p>
         </div>
 
         <ul class="what-list">
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>Auto-Detection</strong>
-              <p>Discovers CLI agents (claude, agy, gemini, codex, aider, ollama), IDE apps (Cursor, Windsurf), and VS Code extensions.</p>
+              <strong>1. Zero-Config Discovery</strong>
+              <p>On startup, thwip automatically scans your machine for installed CLI binaries (claude, agy, gemini, codex, aider, ollama), IDE installations (Cursor, Windsurf, VS Code), and existing credentials in ~/.claude.json, ~/.gemini/config.json, and environment variables.</p>
             </div>
           </li>
 
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>Zero Context Loss</strong>
-              <p>Switch between Claude, Gemini, OpenAI, or Ollama mid-project without losing conversational memory, reasoning, or files.</p>
+              <strong>2. Unified Cross-Provider State</strong>
+              <p>Conversations are preserved in a standardized message format. When you switch between Claude, Gemini, OpenAI, DeepSeek, or Ollama, the complete history, user prompts, tool outputs, and reasoning steps migrate seamlessly.</p>
             </div>
           </li>
 
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>Rate Limit Failover</strong>
-              <p>Detects HTTP 429 errors or quota exhaustion and prompts instant one-key switching to ready fallback models.</p>
+              <strong>3. Shared Universal Tool Engine</strong>
+              <p>Every active agent gets direct, safe access to the same local capabilities: reading files, structured regex editing, creating files, running shell commands, executing sandboxed tests, and committing Git operations.</p>
             </div>
           </li>
 
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>Shared Tool Layer</strong>
-              <p>Every connected agent gains safe file editing, sandboxed Python and Node execution, shell commands, and Git ops.</p>
+              <strong>4. Mid-Session Model Hot-Swapping</strong>
+              <p>Switch models at any point during your workflow using <code>/switch &lt;agent&gt; &lt;model&gt;</code> or the interactive <code>Ctrl+S</code> picker without starting a new session or losing modified workspace files.</p>
             </div>
           </li>
 
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>Dynamic DUI</strong>
-              <p>Terminal interface adapts its theme colors, headers, and status bars to match the active provider branding and real capabilities.</p>
+              <strong>5. Automatic 429 Rate Limit Failover</strong>
+              <p>When an API returns an HTTP 429 rate limit or quota exhaustion error, thwip intercepts the failure, preserves the turn, and offers an immediate one-key fallback to a ready secondary provider.</p>
             </div>
           </li>
 
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>Local & Offline</strong>
-              <p>Integrates directly with local Ollama instances for unlimited, offline coding with zero API keys required.</p>
+              <strong>6. Offline & Local Ollama Support</strong>
+              <p>Full integration with local Ollama daemons. Code completely offline with DeepSeek-R1, Qwen, or Llama models with zero API keys and zero cost.</p>
             </div>
           </li>
         </ul>
       </div>
     </section>
 
-    <!-- Technical Schematics / Figures (OpenCode Style) -->
+    <!-- Technical Architecture Figures -->
     <section class="figures-section">
       <div class="container">
         <div class="section-headline">
-          <h3>Multiplexer Architecture</h3>
-          <p>Built for reliability, speed, and cross-provider interoperability.</p>
+          <h3>Architecture & Protocols</h3>
+          <p>Engineered for high availability, zero context loss, and deterministic tool execution.</p>
         </div>
 
         <div class="figures-grid">
@@ -262,8 +253,8 @@
               </svg>
             </div>
             <div class="figure-meta">
-              <figure>Fig 1.</figure> <strong>Multi-Agent Handoff</strong>
-              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Seamless state migration across provider APIs.</div>
+              <figure>Fig 1.</figure> <strong>Universal Multiplexing</strong>
+              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Seamless state migration across provider SDKs.</div>
             </div>
           </div>
 
@@ -280,8 +271,8 @@
               </svg>
             </div>
             <div class="figure-meta">
-              <figure>Fig 2.</figure> <strong>Universal Tool Engine</strong>
-              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Unified file edits, execution, and git operations.</div>
+              <figure>Fig 2.</figure> <strong>Unified Tool Engine</strong>
+              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Deterministic file editing, test execution, and git operations.</div>
             </div>
           </div>
 
@@ -295,19 +286,94 @@
             </div>
             <div class="figure-meta">
               <figure>Fig 3.</figure> <strong>429 Failover Interceptor</strong>
-              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Instant hot-swap when provider quotas exhaust.</div>
+              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Instant fallback switching when quotas exhaust.</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Commands Table -->
+    <!-- Provider Matrix -->
+    <section id="providers" class="commands-section">
+      <div class="container">
+        <div class="section-headline">
+          <h3>Supported Providers & Models</h3>
+          <p>Native adapter layer supporting the world's leading coding models.</p>
+        </div>
+
+        <div class="commands-table-wrapper">
+          <table class="commands-table">
+            <thead>
+              <tr>
+                <th>Provider</th>
+                <th>Default Models</th>
+                <th>Auto-Discovery Location</th>
+                <th>Context Limit</th>
+                <th>Tools Supported</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Anthropic</strong></td>
+                <td><code>claude-sonnet-4</code>, <code>claude-opus-4</code>, <code>claude-3-5-haiku</code></td>
+                <td><code>~/.claude.json</code>, <code>ANTHROPIC_API_KEY</code></td>
+                <td>200K tokens</td>
+                <td>Chat, Edit, Run, Term, Git</td>
+              </tr>
+              <tr>
+                <td><strong>Google Gemini</strong></td>
+                <td><code>gemini-2.5-pro</code>, <code>gemini-2.5-flash</code>, <code>gemini-2.0-flash</code></td>
+                <td><code>~/.gemini/config.json</code>, <code>GEMINI_API_KEY</code></td>
+                <td>1M+ tokens</td>
+                <td>Chat, Edit, Run, Term, Git</td>
+              </tr>
+              <tr>
+                <td><strong>OpenAI</strong></td>
+                <td><code>gpt-4.5-preview</code>, <code>gpt-4o</code>, <code>o3-mini</code>, <code>o1</code></td>
+                <td><code>~/.config/openai/</code>, <code>OPENAI_API_KEY</code></td>
+                <td>128K-200K tokens</td>
+                <td>Chat, Edit, Run, Term, Git</td>
+              </tr>
+              <tr>
+                <td><strong>DeepSeek</strong></td>
+                <td><code>deepseek-chat</code>, <code>deepseek-reasoner</code> (R1)</td>
+                <td><code>DEEPSEEK_API_KEY</code>, <code>~/.thwip/config.toml</code></td>
+                <td>64K tokens</td>
+                <td>Chat, Edit, Run, Term, Git</td>
+              </tr>
+              <tr>
+                <td><strong>Groq</strong></td>
+                <td><code>llama-3.3-70b-versatile</code>, <code>deepseek-r1-distill-llama-70b</code></td>
+                <td><code>GROQ_API_KEY</code>, <code>~/.thwip/config.toml</code></td>
+                <td>128K tokens</td>
+                <td>Chat, Edit, Run, Term, Git</td>
+              </tr>
+              <tr>
+                <td><strong>Ollama (Local)</strong></td>
+                <td><code>deepseek-r1:latest</code>, <code>qwen2.5-coder:32b</code>, <code>llama3.3</code></td>
+                <td><code>http://localhost:11434</code> (Auto-detected)</td>
+                <td>Local GPU/VRAM</td>
+                <td>Chat, Edit, Run, Term, Git</td>
+              </tr>
+              <tr>
+                <td><strong>OpenRouter</strong></td>
+                <td><code>anthropic/claude-3.5-sonnet</code>, <code>meta-llama/llama-3.3-70b</code></td>
+                <td><code>OPENROUTER_API_KEY</code>, <code>~/.thwip/config.toml</code></td>
+                <td>Provider-dependent</td>
+                <td>Chat, Edit, Run, Term, Git</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Complete Navigation & Commands Reference -->
     <section id="commands" class="commands-section">
       <div class="container">
         <div class="section-headline">
-          <h3>Terminal Ergonomics</h3>
-          <p>Slash commands and shortcuts designed for keyboard-first developers.</p>
+          <h3>Interactive Navigation & Commands</h3>
+          <p>Full reference of slash commands and keyboard shortcuts inside the thwip REPL.</p>
         </div>
 
         <div class="commands-table-wrapper">
@@ -315,45 +381,95 @@
             <thead>
               <tr>
                 <th>Command / Shortcut</th>
+                <th>Arguments</th>
                 <th>Description</th>
                 <th>Example</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><code>/switch [agent] [model]</code></td>
-                <td>Hot-swap active model mid-conversation with zero context loss</td>
+                <td><code>/switch</code></td>
+                <td><code>&lt;agent&gt; [model]</code></td>
+                <td>Hot-swaps active agent and model mid-conversation with zero lost context</td>
                 <td><code>/switch google gemini-2.5-pro</code></td>
               </tr>
               <tr>
                 <td><code>/agents</code></td>
-                <td>Display all discovered local agents, subscription tier, and capabilities</td>
+                <td>None</td>
+                <td>Lists all discovered local agents, configured API keys, and active status</td>
                 <td><code>/agents</code></td>
               </tr>
               <tr>
-                <td><code>/models [agent]</code></td>
-                <td>List available models, context window limits, and pricing</td>
+                <td><code>/models</code></td>
+                <td><code>[agent]</code></td>
+                <td>Displays available models, context window limits, and pricing for a provider</td>
                 <td><code>/models openai</code></td>
               </tr>
               <tr>
+                <td><code>/about</code> or <code>/guide</code></td>
+                <td>None</td>
+                <td>Opens the in-depth system guide and navigation manual inside the terminal</td>
+                <td><code>/about</code></td>
+              </tr>
+              <tr>
                 <td><code>/limits</code></td>
-                <td>Inspect live session tokens, cumulative cost, and quota metrics</td>
+                <td>None</td>
+                <td>Inspects live session tokens, cumulative costs, and rate limit quotas</td>
                 <td><code>/limits</code></td>
               </tr>
               <tr>
-                <td><code>/session save [name]</code></td>
-                <td>Persist current conversation and file modifications to disk</td>
-                <td><code>/session save auth-refactor</code></td>
+                <td><code>/tools</code></td>
+                <td>None</td>
+                <td>Lists available universal tools (read, edit, write, run, bash, git)</td>
+                <td><code>/tools</code></td>
+              </tr>
+              <tr>
+                <td><code>/history</code></td>
+                <td>None</td>
+                <td>Shows conversation turn summary and token breakdown across all models</td>
+                <td><code>/history</code></td>
+              </tr>
+              <tr>
+                <td><code>/session save</code></td>
+                <td><code>&lt;name&gt;</code></td>
+                <td>Persists the current conversation history and file changes to disk</td>
+                <td><code>/session save refactor-auth</code></td>
+              </tr>
+              <tr>
+                <td><code>/session load</code></td>
+                <td><code>&lt;name&gt;</code></td>
+                <td>Restores a saved session and resumes context from where you left off</td>
+                <td><code>/session load refactor-auth</code></td>
+              </tr>
+              <tr>
+                <td><code>/clear</code></td>
+                <td>None</td>
+                <td>Clears current conversation memory and resets session tokens</td>
+                <td><code>/clear</code></td>
               </tr>
               <tr>
                 <td><code>Ctrl + S</code></td>
-                <td>Interactive agent switch prompt shortcut</td>
+                <td>Hotkey</td>
+                <td>Interactive agent and model switch prompt popup</td>
                 <td>Hotkey</td>
               </tr>
               <tr>
                 <td><code>Ctrl + T</code></td>
-                <td>Display current agent status and token counters</td>
                 <td>Hotkey</td>
+                <td>Live agent status, token counters, and active provider info</td>
+                <td>Hotkey</td>
+              </tr>
+              <tr>
+                <td><code>Ctrl + C</code></td>
+                <td>Hotkey</td>
+                <td>Interrupt active streaming response or tool execution</td>
+                <td>Hotkey</td>
+              </tr>
+              <tr>
+                <td><code>/exit</code> or <code>/quit</code></td>
+                <td>None</td>
+                <td>Exits the thwip terminal multiplexer</td>
+                <td><code>/exit</code></td>
               </tr>
             </tbody>
           </table>
@@ -372,7 +488,7 @@
       <div class="footer-links">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">CLI Repository</a>
         <a href="https://github.com/tanmayhutt/thwip-website" target="_blank" rel="noopener noreferrer">Website Repository</a>
-        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package</a>
+        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.0.0)</a>
       </div>
       <div class="footer-right">
         <span>MIT License</span>
