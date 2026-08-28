@@ -36,7 +36,7 @@ export class TerminalDemo {
     this.isRunning = true;
 
     // Reset status bar to Anthropic
-    this.setStatusBarAgent('claude', 'claude-sonnet-4', '#D97757', 'badge-anthropic', 'Anthropic Claude');
+    this.setStatusBarAgent('claude', 'claude-opus-5', '#D97757', 'badge-anthropic', 'Anthropic Claude');
 
     // Sequence of animated events
     this.schedule(() => {
@@ -50,7 +50,7 @@ export class TerminalDemo {
 
     this.schedule(() => {
       this.appendElement(`
-        <div class="t-stream-text" style="color: #D97757; font-weight: 600;">[claude-sonnet-4]</div>
+        <div class="t-stream-text" style="color: #D97757; font-weight: 600;">[claude-opus-5]</div>
         <div class="t-stream-text">
           Inspecting <code>backend/auth.py</code> to add API key header validation and secret hash lookup...
         </div>
@@ -70,10 +70,10 @@ export class TerminalDemo {
     this.schedule(() => {
       this.appendElement(`
         <div class="t-limit-warning">
-          <div style="color: #EAB308; font-weight: 700;">[Limit] Anthropic Claude Sonnet 4</div>
+          <div style="color: #EAB308; font-weight: 700;">[Limit] Anthropic Claude Opus 5</div>
           <div style="color: #F8FAFC; margin-top: 4px;">Rate limit hit: 429 Too Many Requests. Usage quota exceeded for current hour.</div>
           <div style="margin-top: 8px; color: #94A3B8; font-size: 12.5px;">
-            Suggested ready fallback: <strong style="color: #4285F4;">Google Gemini 2.5 Pro</strong>
+            Suggested ready fallback: <strong style="color: #4285F4;">Google Gemini 3.7 Flash</strong>
           </div>
         </div>
       `);
@@ -83,19 +83,19 @@ export class TerminalDemo {
       this.appendElement(`
         <div class="t-prompt" style="margin-top: 14px;">
           <span class="t-user-label" style="color: #E2E8F0;">thwip &gt;</span>
-          <span style="color: #38BDF8; font-weight: 700;">/switch google gemini-2.5-pro</span>
+          <span style="color: #38BDF8; font-weight: 700;">/switch google gemini-3.7-flash</span>
         </div>
       `);
       // Update UI branding to Google
-      this.setStatusBarAgent('google', 'gemini-2.5-pro', '#4285F4', 'badge-google', 'Google Gemini');
+      this.setStatusBarAgent('google', 'gemini-3.7-flash', '#4285F4', 'badge-google', 'Google Gemini');
     }, 4800);
 
     this.schedule(() => {
       this.appendElement(`
         <div class="t-switch-notice">
-          <div style="color: #4285F4; font-weight: 700;">Agent Switch: Antigravity / Gemini (gemini-2.5-pro)</div>
+          <div style="color: #4285F4; font-weight: 700;">Agent Switch: Antigravity / Gemini (gemini-3.7-flash)</div>
           <div style="color: #94A3B8; font-size: 12px; margin-top: 4px;">
-            Supported: Chat, File Edit, Code Run, Terminal, Web Search | Context preserved intact.
+            Supported: Chat, File Edit, Code Run, Terminal, Git | Context preserved intact.
           </div>
         </div>
       `);
@@ -103,7 +103,7 @@ export class TerminalDemo {
 
     this.schedule(() => {
       this.appendElement(`
-        <div class="t-stream-text" style="color: #4285F4; font-weight: 600;">[gemini-2.5-pro]</div>
+        <div class="t-stream-text" style="color: #4285F4; font-weight: 600;">[gemini-3.7-flash]</div>
         <div class="t-stream-text">
           Received full conversation memory and auth.py diff. Creating unit tests in <code>tests/test_auth.py</code> and running verification...
         </div>

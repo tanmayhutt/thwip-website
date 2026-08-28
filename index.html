@@ -80,7 +80,7 @@
       <div class="nav-actions">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer" class="btn-cta">
           <span>GitHub</span>
-          <span style="color: var(--text-dim); font-size: 11px;">v1.0.4</span>
+          <span style="color: var(--text-dim); font-size: 11px;">v1.1.0</span>
         </a>
       </div>
     </div>
@@ -92,7 +92,7 @@
       <div class="container">
         <div class="desktop-app-banner">
           <span class="banner-badge">Release</span>
-          <span>thwip-cli v1.0.4 is live on PyPI.</span>
+          <span>thwip-cli v1.1.0 is live on PyPI.</span>
           <a href="#how-it-works" class="banner-link">Explore documentation</a>
         </div>
 
@@ -153,7 +153,7 @@
             <div class="status-left">
               <span id="bar-agent-label" class="status-agent" style="color: #D97757;">claude</span>
               <span class="status-sep">|</span>
-              <span id="bar-model-label" class="status-model">claude-sonnet-4</span>
+              <span id="bar-model-label" class="status-model">claude-opus-5</span>
               <span class="status-sep">|</span>
               <span class="status-caps" id="bar-caps">
                 <span class="cap-item cap-active">[chat]</span>
@@ -185,8 +185,8 @@
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>1. Zero-Config Discovery</strong>
-              <p>On startup, thwip automatically scans your machine for installed CLI binaries (claude, agy, gemini, codex, aider, ollama), IDE installations (Cursor, Windsurf, VS Code), and existing credentials in ~/.claude.json, ~/.gemini/config.json, and environment variables.</p>
+              <strong>1. Local Discovery</strong>
+              <p>On startup, thwip scans your machine for supported CLI binaries, desktop apps, local Ollama, and configured API keys. CLI subscription sign-ins are reported separately because they are not interchangeable with provider API credentials.</p>
             </div>
           </li>
 
@@ -202,7 +202,7 @@
             <span class="item-bullet">[*]</span>
             <div class="item-content">
               <strong>3. Shared Universal Tool Engine</strong>
-              <p>Every active agent gets direct, safe access to the same local capabilities: reading files, structured regex editing, creating files, running shell commands, executing sandboxed tests, and committing Git operations.</p>
+              <p>Compatible models can use the same project-scoped tools for reading, exact editing, creating files, running shell commands, executing Python snippets, and inspecting Git changes. Mutating actions require confirmation by default, and tool results are returned to the model before it continues.</p>
             </div>
           </li>
 
@@ -238,7 +238,7 @@
       <div class="container">
         <div class="section-headline">
           <h3>Architecture & Protocols</h3>
-          <p>Engineered for high availability, zero context loss, and deterministic tool execution.</p>
+          <p>Engineered for provider failover, portable conversation history, and bounded tool execution.</p>
         </div>
 
         <div class="figures-grid">
@@ -315,35 +315,35 @@
             <tbody>
               <tr>
                 <td><strong>Anthropic</strong></td>
-                <td><code>claude-sonnet-4</code>, <code>claude-opus-4</code>, <code>claude-3-5-haiku</code></td>
+                <td><code>claude-fable-5</code>, <code>claude-opus-5</code>, <code>claude-sonnet-5</code>, <code>claude-haiku-4-5</code></td>
                 <td><code>~/.claude.json</code>, <code>ANTHROPIC_API_KEY</code></td>
-                <td>200K tokens</td>
+                <td>Up to 1M tokens</td>
                 <td>Chat, Edit, Run, Term, Git</td>
               </tr>
               <tr>
                 <td><strong>Google Gemini</strong></td>
-                <td><code>gemini-2.5-pro</code>, <code>gemini-2.5-flash</code>, <code>gemini-2.0-flash</code></td>
+                <td><code>gemini-3.1-pro-preview</code>, <code>gemini-3.7-flash</code>, <code>gemini-3.5-flash-lite</code></td>
                 <td><code>~/.gemini/config.json</code>, <code>GEMINI_API_KEY</code></td>
                 <td>1M+ tokens</td>
                 <td>Chat, Edit, Run, Term, Git</td>
               </tr>
               <tr>
                 <td><strong>OpenAI</strong></td>
-                <td><code>gpt-4.5-preview</code>, <code>gpt-4o</code>, <code>o3-mini</code>, <code>o1</code></td>
+                <td><code>gpt-5.6-sol</code>, <code>gpt-5.6-terra</code>, <code>gpt-5.6-luna</code></td>
                 <td><code>~/.config/openai/</code>, <code>OPENAI_API_KEY</code></td>
-                <td>128K-200K tokens</td>
+                <td>1.05M tokens</td>
                 <td>Chat, Edit, Run, Term, Git</td>
               </tr>
               <tr>
                 <td><strong>DeepSeek</strong></td>
-                <td><code>deepseek-chat</code>, <code>deepseek-reasoner</code> (R1)</td>
+                <td><code>deepseek-v4-pro</code>, <code>deepseek-v4-flash</code></td>
                 <td><code>DEEPSEEK_API_KEY</code>, <code>~/.thwip/config.toml</code></td>
-                <td>64K tokens</td>
+                <td>1M tokens</td>
                 <td>Chat, Edit, Run, Term, Git</td>
               </tr>
               <tr>
                 <td><strong>Groq</strong></td>
-                <td><code>llama-3.3-70b-versatile</code>, <code>deepseek-r1-distill-llama-70b</code></td>
+                <td><code>llama-3.3-70b-versatile</code>, <code>openai/gpt-oss-120b</code></td>
                 <td><code>GROQ_API_KEY</code>, <code>~/.thwip/config.toml</code></td>
                 <td>128K tokens</td>
                 <td>Chat, Edit, Run, Term, Git</td>
@@ -357,7 +357,7 @@
               </tr>
               <tr>
                 <td><strong>OpenRouter</strong></td>
-                <td><code>anthropic/claude-3.5-sonnet</code>, <code>meta-llama/llama-3.3-70b</code></td>
+                <td><code>anthropic/claude-opus-5</code>, <code>openai/gpt-5.6-terra</code>, <code>google/gemini-3.7-flash</code></td>
                 <td><code>OPENROUTER_API_KEY</code>, <code>~/.thwip/config.toml</code></td>
                 <td>Provider-dependent</td>
                 <td>Chat, Edit, Run, Term, Git</td>
@@ -391,12 +391,12 @@
                 <td><code>/switch</code></td>
                 <td><code>&lt;agent&gt; [model]</code></td>
                 <td>Hot-swaps active agent and model mid-conversation with zero lost context</td>
-                <td><code>/switch google gemini-2.5-pro</code></td>
+                <td><code>/switch google gemini-3.7-flash</code></td>
               </tr>
               <tr>
                 <td><code>/agents</code></td>
                 <td>None</td>
-                <td>Lists all discovered local agents, configured API keys, and active status</td>
+                <td>Lists discovered local agents, API readiness, and detected CLI-only authentication</td>
                 <td><code>/agents</code></td>
               </tr>
               <tr>
@@ -488,7 +488,7 @@
       <div class="footer-links">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">CLI Repository</a>
         <a href="https://github.com/tanmayhutt/thwip-website" target="_blank" rel="noopener noreferrer">Website Repository</a>
-        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.0.0)</a>
+        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.0.4)</a>
       </div>
       <div class="footer-right">
         <span>MIT License</span>
