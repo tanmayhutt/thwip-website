@@ -273,6 +273,17 @@ body {
   border-color: var(--text-muted);
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 /* Terminal Simulator */
 .demo-section {
   padding: 40px 0 70px;
@@ -638,11 +649,31 @@ body {
     font-size: 34px;
   }
   .nav-links {
-    display: none;
+    order: 3;
+    width: 100%;
+    gap: 18px;
+    overflow-x: auto;
+    padding-top: 12px;
+    scrollbar-width: thin;
+  }
+  .nav-links a {
+    white-space: nowrap;
+  }
+  .nav-container {
+    flex-wrap: wrap;
   }
   .install-command-panel {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

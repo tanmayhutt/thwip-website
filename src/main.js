@@ -18,15 +18,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const copyBtn = document.getElementById('btn-copy-install');
   const copyLabel = document.getElementById('copy-label');
 
-  installTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      installTabs.forEach(t => t.classList.remove('active'));
+  const activateInstallTab = (tab) => {
+      installTabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+        t.tabIndex = -1;
+      });
       tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      tab.tabIndex = 0;
 
       const cmd = tab.getAttribute('data-cmd');
       if (activeInstallCmd && cmd) {
         activeInstallCmd.textContent = cmd;
       }
+  };
+
+  installTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateInstallTab(tab));
+    tab.addEventListener('keydown', event => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === 'ArrowLeft') nextIndex = (index - 1 + installTabs.length) % installTabs.length;
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % installTabs.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = installTabs.length - 1;
+      activateInstallTab(installTabs[nextIndex]);
+      installTabs[nextIndex].focus();
     });
   });
 
@@ -47,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 2000);
       } catch (err) {
         console.error('Failed to copy command: ', err);
+        if (copyLabel) copyLabel.textContent = 'Copy failed';
       }
     });
   }

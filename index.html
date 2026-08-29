@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>thwip | The open source AI coding agent multiplexer</title>
-  <meta name="description" content="Universal coding agent multiplexer. Detect all installed AI coding agents on your machine, combine them into a unified terminal REPL, and hot-swap models mid-conversation with zero context loss.">
+  <meta name="description" content="Open source terminal multiplexer for configured AI model providers. Keep portable text history, use confirmed local tools, and switch providers in one REPL.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -99,17 +99,17 @@
         <h1 class="hero-title">The open source AI coding agent multiplexer</h1>
         
         <p class="hero-subtitle">
-          Detect all installed AI coding agents on your machine, combine them in a unified terminal REPL, and hot-swap models mid-conversation without losing context, files, or execution state.
+          Discover supported local tools, connect configured model providers in one terminal REPL, and switch providers while preserving portable text conversation history.
         </p>
 
         <!-- Segmented Installation Box -->
         <div class="installation-box">
-          <div class="install-tabs-header">
-            <button class="install-tab-btn active" data-cmd="pip install thwip-cli" data-target="pip">pip</button>
-            <button class="install-tab-btn" data-cmd="uv tool install thwip-cli" data-target="uv">uv</button>
-            <button class="install-tab-btn" data-cmd="curl -fsSL https://raw.githubusercontent.com/tanmayhutt/thwip-cli/main/install.sh | bash" data-target="curl">curl</button>
-            <button class="install-tab-btn" data-cmd="pipx install thwip-cli" data-target="pipx">pipx</button>
-            <button class="install-tab-btn" data-cmd="git clone https://github.com/tanmayhutt/thwip-cli.git" data-target="git">git</button>
+          <div class="install-tabs-header" role="tablist" aria-label="Installation method">
+            <button class="install-tab-btn active" role="tab" aria-selected="true" tabindex="0" data-cmd="pip install thwip-cli" data-target="pip">pip</button>
+            <button class="install-tab-btn" role="tab" aria-selected="false" tabindex="-1" data-cmd="uv tool install thwip-cli" data-target="uv">uv</button>
+            <button class="install-tab-btn" role="tab" aria-selected="false" tabindex="-1" data-cmd="curl -fsSL https://raw.githubusercontent.com/tanmayhutt/thwip-cli/main/install.sh | bash" data-target="curl">curl</button>
+            <button class="install-tab-btn" role="tab" aria-selected="false" tabindex="-1" data-cmd="pipx install thwip-cli" data-target="pipx">pipx</button>
+            <button class="install-tab-btn" role="tab" aria-selected="false" tabindex="-1" data-cmd="git clone https://github.com/tanmayhutt/thwip-cli.git" data-target="git">git</button>
           </div>
 
           <div class="install-command-panel">
@@ -145,7 +145,7 @@
             </div>
           </div>
 
-          <div class="terminal-body" id="terminal-screen">
+          <div class="terminal-body" id="terminal-screen" aria-live="polite" aria-label="Simulated thwip terminal transcript">
             <!-- Dynamic interactive terminal simulation -->
           </div>
 
@@ -193,8 +193,8 @@
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>2. Unified Cross-Provider State</strong>
-              <p>Conversations are preserved in a standardized message format. When you switch between Claude, Gemini, OpenAI, DeepSeek, or Ollama, the complete history, user prompts, tool outputs, and reasoning steps migrate seamlessly.</p>
+              <strong>2. Portable Cross-Provider History</strong>
+              <p>Completed user and assistant text turns are preserved in a standardized message format. When you switch providers, that portable text history moves with you while every provider keeps its own native tool protocol.</p>
             </div>
           </li>
 
@@ -217,7 +217,7 @@
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>5. Automatic 429 Rate Limit Failover</strong>
+              <strong>5. Guided 429 Rate Limit Failover</strong>
               <p>When an API returns an HTTP 429 rate limit or quota exhaustion error, thwip intercepts the failure, preserves the turn, and offers an immediate one-key fallback to a ready secondary provider.</p>
             </div>
           </li>
@@ -238,7 +238,7 @@
       <div class="container">
         <div class="section-headline">
           <h3>Architecture & Protocols</h3>
-          <p>Engineered for provider failover, portable conversation history, and bounded tool execution.</p>
+          <p>Engineered for provider failover, portable text history, and confirmed local tool execution. Commands and code run with your local user permissions, not in a security sandbox.</p>
         </div>
 
         <div class="figures-grid">
@@ -254,7 +254,7 @@
             </div>
             <div class="figure-meta">
               <figure>Fig 1.</figure> <strong>Universal Multiplexing</strong>
-              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Seamless state migration across provider SDKs.</div>
+              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Portable text history with provider-native request translation.</div>
             </div>
           </div>
 
@@ -286,7 +286,7 @@
             </div>
             <div class="figure-meta">
               <figure>Fig 3.</figure> <strong>429 Failover Interceptor</strong>
-              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Instant fallback switching when quotas exhaust.</div>
+              <div style="margin-top: 4px; font-size: 12px; color: var(--text-dim);">Prompted fallback switching when quotas exhaust.</div>
             </div>
           </div>
         </div>

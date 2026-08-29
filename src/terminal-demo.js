@@ -34,6 +34,7 @@ export class TerminalDemo {
   start() {
     this.clear();
     this.isRunning = true;
+    if (this.replayBtn) this.replayBtn.disabled = true;
 
     // Reset status bar to Anthropic
     this.setStatusBarAgent('claude', 'claude-opus-5', '#D97757', 'badge-anthropic', 'Anthropic Claude');
@@ -95,7 +96,7 @@ export class TerminalDemo {
         <div class="t-switch-notice">
           <div style="color: #4285F4; font-weight: 700;">Agent Switch: Antigravity / Gemini (gemini-3.7-flash)</div>
           <div style="color: #94A3B8; font-size: 12px; margin-top: 4px;">
-            Supported: Chat, File Edit, Code Run, Terminal, Git | Context preserved intact.
+            Supported: Chat, File Edit, Code Run, Terminal, Git | Portable text history available.
           </div>
         </div>
       `);
@@ -105,7 +106,7 @@ export class TerminalDemo {
       this.appendElement(`
         <div class="t-stream-text" style="color: #4285F4; font-weight: 600;">[gemini-3.7-flash]</div>
         <div class="t-stream-text">
-          Received full conversation memory and auth.py diff. Creating unit tests in <code>tests/test_auth.py</code> and running verification...
+          Received the portable text history. Reading the current auth.py state, creating unit tests in <code>tests/test_auth.py</code>, and running verification...
         </div>
       `);
     }, 6800);
@@ -127,10 +128,15 @@ export class TerminalDemo {
           <div class="t-test-pass">[ok] 8 passed in 0.42s</div>
         </div>
         <div class="t-stream-text" style="color: #94A3B8; font-size: 12.5px; margin-top: 10px;">
-          All API key validation tests pass cleanly. Context and reasoning preserved across provider switch.
+          All API key validation tests pass cleanly. Portable conversation text and current workspace state remained available after the provider switch.
         </div>
       `);
     }, 9000);
+
+    this.schedule(() => {
+      this.isRunning = false;
+      if (this.replayBtn) this.replayBtn.disabled = false;
+    }, 9200);
   }
 
   appendElement(html) {
