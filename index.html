@@ -80,7 +80,7 @@
       <div class="nav-actions">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer" class="btn-cta">
           <span>GitHub</span>
-          <span style="color: var(--text-dim); font-size: 11px;">v1.4.0</span>
+          <span style="color: var(--text-dim); font-size: 11px;">v1.5.0</span>
         </a>
       </div>
     </div>
@@ -92,14 +92,14 @@
       <div class="container">
         <div class="desktop-app-banner">
           <span class="banner-badge">Release</span>
-          <span>thwip-cli v1.4.0 is live on PyPI.</span>
+          <span>thwip-cli v1.5.0 is live on PyPI.</span>
           <a href="#how-it-works" class="banner-link">Explore documentation</a>
         </div>
 
         <h1 class="hero-title">The open source AI coding agent multiplexer</h1>
         
         <p class="hero-subtitle">
-          Discover supported local tools, connect configured model providers in one terminal REPL, and switch providers while preserving portable text conversation history.
+          Use the coding agents already signed in on your machine, Codex, Claude Code, and Antigravity, from one terminal. Switch providers mid-conversation, keep the text history, and fail over the moment a usage limit hits.
         </p>
 
         <!-- Segmented Installation Box -->
@@ -185,8 +185,8 @@
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>1. Local Discovery</strong>
-              <p>On startup, thwip scans your machine for supported CLI binaries, desktop apps, local Ollama, and configured API keys. CLI subscription sign-ins are reported separately because they are not interchangeable with provider API credentials.</p>
+              <strong>1. Existing Sign-ins, No API Keys</strong>
+              <p>On startup, thwip finds installed Codex, Claude Code, and Antigravity CLIs and connects to each through its own supported protocol using the login you already have. Model lists come live from the CLI or, for direct API keys, from the provider's list-models endpoint. Nothing is hardcoded and no credential is copied.</p>
             </div>
           </li>
 
@@ -217,16 +217,16 @@
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>5. Guided 429 Rate Limit Failover</strong>
-              <p>When an API returns an HTTP 429 rate limit or quota exhaustion error, thwip intercepts the failure, preserves the turn, and offers an immediate one-key fallback to a ready secondary provider.</p>
+              <strong>5. Usage-Limit Failover</strong>
+              <p>When Codex says you have hit your usage limit, Claude Code reports a rejected rate limit, Google returns RESOURCE_EXHAUSTED, or an API answers 429, thwip stops, lists the ready alternatives, switches on one keypress, and re-sends your message. <code>/limits</code> shows each account's 5-hour and 7-day usage so you can see it coming.</p>
             </div>
           </li>
 
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>6. Offline & Local Ollama Support</strong>
-              <p>Full integration with local Ollama daemons. Code completely offline with DeepSeek-R1, Qwen, or Llama models with zero API keys and zero cost.</p>
+              <strong>6. The Flow You Already Know</strong>
+              <p>The everyday commands from Codex, Claude Code, and Antigravity work here too: <code>/model</code>, <code>/new</code>, <code>/resume</code>, <code>/compact</code>, <code>/diff</code>, <code>/copy</code>, <code>!command</code>, and <code>@file</code> mentions. Local Ollama models are supported for fully offline work.</p>
             </div>
           </li>
         </ul>
@@ -298,7 +298,7 @@
       <div class="container">
         <div class="section-headline">
           <h3>Supported Providers & Models</h3>
-          <p>Native adapter layer supporting the world's leading coding models.</p>
+          <p>Installed CLI sign-ins are used directly. Direct API keys fetch the live model list from the provider. The IDs below are examples, not a fixed catalog.</p>
         </div>
 
         <div class="commands-table-wrapper">
@@ -306,8 +306,8 @@
             <thead>
               <tr>
                 <th>Provider</th>
-                <th>Default Models</th>
-                <th>Auto-Discovery Location</th>
+                <th>Example Models</th>
+                <th>Connection</th>
                 <th>Context Limit</th>
                 <th>Tools Supported</th>
               </tr>
@@ -316,21 +316,21 @@
               <tr>
                 <td><strong>Anthropic</strong></td>
                 <td><code>claude-fable-5</code>, <code>claude-opus-5</code>, <code>claude-sonnet-5</code>, <code>claude-haiku-4-5</code></td>
-                <td><code>~/.claude.json</code>, <code>ANTHROPIC_API_KEY</code></td>
+                <td>Claude Code sign-in (<code>claude</code>), or <code>ANTHROPIC_API_KEY</code></td>
                 <td>Up to 1M tokens</td>
                 <td>Chat, Edit, Run, Term, Git</td>
               </tr>
               <tr>
                 <td><strong>Google Gemini</strong></td>
                 <td><code>gemini-3.1-pro-preview</code>, <code>gemini-3.7-flash</code>, <code>gemini-3.5-flash-lite</code></td>
-                <td><code>~/.gemini/config.json</code>, <code>GEMINI_API_KEY</code></td>
+                <td>Antigravity CLI sign-in (<code>agy</code>) or Gemini CLI, or <code>GEMINI_API_KEY</code></td>
                 <td>1M+ tokens</td>
                 <td>Chat, Edit, Run, Term, Git</td>
               </tr>
               <tr>
                 <td><strong>OpenAI</strong></td>
                 <td><code>gpt-5.6-sol</code>, <code>gpt-5.6-terra</code>, <code>gpt-5.6-luna</code></td>
-                <td><code>~/.config/openai/</code>, <code>OPENAI_API_KEY</code></td>
+                <td>Codex sign-in (<code>codex</code> App Server), or <code>OPENAI_API_KEY</code></td>
                 <td>1.05M tokens</td>
                 <td>Chat, Edit, Run, Term, Git</td>
               </tr>
@@ -442,6 +442,48 @@
                 <td><code>/session load refactor-auth</code></td>
               </tr>
               <tr>
+                <td><code>/model</code></td>
+                <td><code>[id]</code></td>
+                <td>Pick a model for the current agent from a numbered list or by ID</td>
+                <td><code>/model</code></td>
+              </tr>
+              <tr>
+                <td><code>/handoff</code></td>
+                <td><code>[agent] [model]</code></td>
+                <td>Preview what transfers, what is lost, and the context fit before switching</td>
+                <td><code>/handoff google</code></td>
+              </tr>
+              <tr>
+                <td><code>/compact</code></td>
+                <td>None</td>
+                <td>Summarize the conversation with the current model; the plain-text summary travels across providers</td>
+                <td><code>/compact</code></td>
+              </tr>
+              <tr>
+                <td><code>/new</code> and <code>/resume</code></td>
+                <td><code>[name]</code></td>
+                <td>Start a fresh conversation (the current one is saved) or resume a saved one from a list</td>
+                <td><code>/resume</code></td>
+              </tr>
+              <tr>
+                <td><code>/diff</code>, <code>/copy</code>, <code>/export</code></td>
+                <td><code>[staged]</code>, none, <code>[path]</code></td>
+                <td>Show the project git diff, copy the last response, or export the conversation to Markdown with model attribution</td>
+                <td><code>/export notes.md</code></td>
+              </tr>
+              <tr>
+                <td><code>!command</code></td>
+                <td>Shell command</td>
+                <td>Run a shell command in the project without involving a model</td>
+                <td><code>!git status</code></td>
+              </tr>
+              <tr>
+                <td><code>@path</code></td>
+                <td>In a message</td>
+                <td>Attach a project file's content to your message; paths outside the project are ignored</td>
+                <td><code>Explain @src/app.py</code></td>
+              </tr>
+              <tr>
                 <td><code>/clear</code></td>
                 <td>None</td>
                 <td>Clears current conversation memory and resets session tokens</td>
@@ -488,7 +530,7 @@
       <div class="footer-links">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">CLI Repository</a>
         <a href="https://github.com/tanmayhutt/thwip-website" target="_blank" rel="noopener noreferrer">Website Repository</a>
-        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.4.0)</a>
+        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.5.0)</a>
       </div>
       <div class="footer-right">
         <span>MIT License</span>
