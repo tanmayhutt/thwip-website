@@ -80,7 +80,7 @@
       <div class="nav-actions">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer" class="btn-cta">
           <span>GitHub</span>
-          <span style="color: var(--text-dim); font-size: 11px;">v1.7.0</span>
+          <span style="color: var(--text-dim); font-size: 11px;">v1.8.0</span>
         </a>
       </div>
     </div>
@@ -92,7 +92,7 @@
       <div class="container">
         <div class="desktop-app-banner">
           <span class="banner-badge">Release</span>
-          <span>thwip-cli v1.7.0 is live on PyPI.</span>
+          <span>thwip-cli v1.8.0 is live on PyPI.</span>
           <a href="#how-it-works" class="banner-link">Explore documentation</a>
         </div>
 
@@ -225,7 +225,15 @@
           <li class="what-item">
             <span class="item-bullet">[*]</span>
             <div class="item-content">
-              <strong>6. The Flow You Already Know</strong>
+              <strong>6. Project Memory and Your Second Brain</strong>
+              <p>One <code>context.md</code> per project that every agent reads and helps maintain: current work, decisions, known issues, dated changes. On first run thwip connects your Obsidian vault (or creates one) and files each project as an index card, with hub notes per stack, area, and tag so related projects link to each other. Updates proposed by the model are shown as a diff and written only when you confirm.</p>
+            </div>
+          </li>
+
+          <li class="what-item">
+            <span class="item-bullet">[*]</span>
+            <div class="item-content">
+              <strong>7. The Flow You Already Know</strong>
               <p>The everyday commands from Codex, Claude Code, and Antigravity work here too: <code>/model</code>, <code>/new</code>, <code>/resume</code>, <code>/compact</code>, <code>/diff</code>, <code>/copy</code>, <code>!command</code>, and <code>@file</code> mentions. Local Ollama models are supported for fully offline work.</p>
             </div>
           </li>
@@ -478,6 +486,12 @@
                 <td><code>!git status</code></td>
               </tr>
               <tr>
+                <td><code>/memory</code></td>
+                <td><code>[init|update|sync|vault|link]</code></td>
+                <td>Show, create, or model-update the project's memory file; file it into your second-brain vault</td>
+                <td><code>/memory update</code></td>
+              </tr>
+              <tr>
                 <td><code>THWIP_*_BASE_URL</code></td>
                 <td>Environment or <code>[endpoints]</code></td>
                 <td>Point any direct adapter at a proxy, gateway, or OpenAI-compatible server; keys stay provider keys</td>
@@ -536,7 +550,7 @@
       <div class="footer-links">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">CLI Repository</a>
         <a href="https://github.com/tanmayhutt/thwip-website" target="_blank" rel="noopener noreferrer">Website Repository</a>
-        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.7.0)</a>
+        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.8.0)</a>
       </div>
       <div class="footer-right">
         <span>MIT License</span>
