@@ -1,6 +1,7 @@
 /**
- * Interactive Terminal Simulation for thwip.
- * Replays live multi-agent hot-swapping under rate limits.
+ * Interactive terminal simulation for thwip.
+ * Replays a real flow: a usage limit on one signed-in CLI, a one-key switch to another,
+ * the catch-up the new provider receives, and a project-memory update.
  */
 
 export class TerminalDemo {
@@ -36,24 +37,23 @@ export class TerminalDemo {
     this.isRunning = true;
     if (this.replayBtn) this.replayBtn.disabled = true;
 
-    // Reset status bar to Anthropic
-    this.setStatusBarAgent('claude', 'claude-opus-5', '#D97757', 'badge-anthropic', 'Anthropic Claude');
+    this.setStatusBarAgent('claude', 'fable', '#D97757', 'badge-anthropic', 'Claude Code');
 
-    // Sequence of animated events
     this.schedule(() => {
       this.appendElement(`
         <div class="t-prompt">
           <span class="t-user-label">You &gt;</span>
-          <span class="t-user-query">Refactor backend auth middleware to support API keys and verify with pytest.</span>
+          <span class="t-user-query">Add API-key auth to the middleware and cover it with pytest.</span>
         </div>
       `);
     }, 400);
 
     this.schedule(() => {
       this.appendElement(`
-        <div class="t-stream-text" style="color: #D97757; font-weight: 600;">[claude-opus-5]</div>
+        <div class="t-stream-text" style="color: #D97757; font-weight: 600;">[fable]</div>
         <div class="t-stream-text">
-          Inspecting <code>backend/auth.py</code> to add API key header validation and secret hash lookup...
+          Read <code>context.md</code>: the project already stores hashed keys in SQLite. Adding header validation in
+          <code>backend/auth.py</code> and a lookup against that table.
         </div>
       `);
     }, 1200);
@@ -61,9 +61,8 @@ export class TerminalDemo {
     this.schedule(() => {
       this.appendElement(`
         <div class="t-tool-box">
-          <div style="color: #EAB308; font-weight: 700;">Action: edit_file</div>
-          <div style="color: #94A3B8; font-size: 12px;">path: backend/auth.py | diff: +28 lines</div>
-          <div style="color: #4ADE80; font-size: 12px; margin-top: 4px;">Result: File backend/auth.py updated successfully.</div>
+          <div style="color: #EAB308; font-weight: 700;">Tool: Edit backend/auth.py</div>
+          <div style="color: #94A3B8; font-size: 12px;">Claude Code's own tools, its own sandbox and approvals</div>
         </div>
       `);
     }, 2200);
@@ -71,64 +70,64 @@ export class TerminalDemo {
     this.schedule(() => {
       this.appendElement(`
         <div class="t-limit-warning">
-          <div style="color: #EAB308; font-weight: 700;">[Limit] Anthropic Claude Opus 5</div>
-          <div style="color: #F8FAFC; margin-top: 4px;">Rate limit hit: 429 Too Many Requests. Usage quota exceeded for current hour.</div>
-          <div style="margin-top: 8px; color: #94A3B8; font-size: 12.5px;">
-            Suggested ready fallback: <strong style="color: #4285F4;">Google Gemini 3.7 Flash</strong>
-          </div>
+          <div style="color: #EAB308; font-weight: 700;">Claude Code: usage limit reached (5h window, resets 16:40)</div>
+          <div style="color: #F8FAFC; margin-top: 4px;">Ready alternatives: 1. Antigravity CLI (gemini-3.8-flash-high)  2. Codex CLI (gpt-5.6-sol)</div>
+          <div style="margin-top: 8px; color: #94A3B8; font-size: 12.5px;">Switch to alternative agent now? [1 to switch, Enter to cancel]: <strong style="color: #F1ECEC;">1</strong></div>
         </div>
       `);
     }, 3600);
 
     this.schedule(() => {
       this.appendElement(`
-        <div class="t-prompt" style="margin-top: 14px;">
-          <span class="t-user-label" style="color: #E2E8F0;">thwip &gt;</span>
-          <span style="color: #38BDF8; font-weight: 700;">/switch google gemini-3.7-flash</span>
+        <div class="t-switch-notice">
+          <div style="color: #4285F4; font-weight: 700;">Switched to Antigravity CLI (gemini-3.8-flash-high) through its existing sign-in</div>
+          <div style="color: #94A3B8; font-size: 12px; margin-top: 4px;">
+            Portable text history preserved. Retrying your last message with the new agent...
+          </div>
         </div>
       `);
-      // Update UI branding to Google
-      this.setStatusBarAgent('google', 'gemini-3.7-flash', '#4285F4', 'badge-google', 'Google Gemini');
+      this.setStatusBarAgent('google', 'gemini-3.8-flash-high', '#4285F4', 'badge-google', 'Antigravity CLI');
     }, 4800);
 
     this.schedule(() => {
       this.appendElement(`
-        <div class="t-switch-notice">
-          <div style="color: #4285F4; font-weight: 700;">Agent Switch: Antigravity / Gemini (gemini-3.7-flash)</div>
-          <div style="color: #94A3B8; font-size: 12px; margin-top: 4px;">
-            Supported: Chat, File Edit, Code Run, Terminal, Git | Portable text history available.
-          </div>
-        </div>
-      `);
-    }, 5800);
-
-    this.schedule(() => {
-      this.appendElement(`
-        <div class="t-stream-text" style="color: #4285F4; font-weight: 600;">[gemini-3.7-flash]</div>
+        <div class="t-stream-text" style="color: #4285F4; font-weight: 600;">[gemini-3.8-flash-high]</div>
         <div class="t-stream-text">
-          Received the portable text history. Reading the current auth.py state, creating unit tests in <code>tests/test_auth.py</code>, and running verification...
+          Picking up from the transcript: header validation is in place. Writing <code>tests/test_auth.py</code> and running it.
         </div>
       `);
-    }, 6800);
+    }, 5900);
 
     this.schedule(() => {
       this.appendElement(`
         <div class="t-tool-box" style="border-left-color: #4285F4;">
-          <div style="color: #4285F4; font-weight: 700;">Action: write_file</div>
-          <div style="color: #94A3B8; font-size: 12px;">path: tests/test_auth.py | 8 test cases written</div>
+          <div style="color: #4285F4; font-weight: 700;">Tool: write_to_file tests/test_auth.py</div>
+          <div style="color: #94A3B8; font-size: 12px;">8 test cases</div>
         </div>
       `);
-    }, 7800);
+    }, 6900);
+
+    this.schedule(() => {
+      this.appendElement(`
+        <div class="t-prompt" style="margin-top: 14px;">
+          <span class="t-user-label" style="color: #E2E8F0;">You &gt;</span>
+          <span style="color: #38BDF8; font-weight: 700;">/memory update</span>
+        </div>
+        <div class="t-tool-box" style="border-left-color: #CFCECD;">
+          <div style="color: #CFCECD; font-weight: 700;">context.md: proposed changes</div>
+          <div style="color: #4ADE80; font-size: 12px;">+ Decisions: API keys validated from the X-API-Key header against hashed rows in SQLite.</div>
+          <div style="color: #4ADE80; font-size: 12px;">+ 2026-09-25: header auth added; tests in tests/test_auth.py.</div>
+          <div style="color: #94A3B8; font-size: 12px; margin-top: 4px;">Write these changes to context.md? [y/N] <strong style="color: #F1ECEC;">y</strong></div>
+        </div>
+      `);
+    }, 7900);
 
     this.schedule(() => {
       this.appendElement(`
         <div class="t-tool-box" style="border-left-color: #4ADE80;">
-          <div style="color: #4ADE80; font-weight: 700;">Action: run_command</div>
-          <div style="color: #94A3B8; font-size: 12px;">command: pytest tests/test_auth.py</div>
+          <div style="color: #4ADE80; font-weight: 700;">!pytest tests/test_auth.py</div>
           <div class="t-test-pass">[ok] 8 passed in 0.42s</div>
-        </div>
-        <div class="t-stream-text" style="color: #94A3B8; font-size: 12.5px; margin-top: 10px;">
-          All API key validation tests pass cleanly. Portable conversation text and current workspace state remained available after the provider switch.
+          <div style="color: #94A3B8; font-size: 12.5px; margin-top: 6px;">Project memory updated and filed in the vault. Both agents now start from the same context.md.</div>
         </div>
       `);
     }, 9000);
