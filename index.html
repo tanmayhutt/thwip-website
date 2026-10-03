@@ -79,7 +79,7 @@
       <div class="nav-actions">
         <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer" class="btn-cta">
           <span>PyPI</span>
-          <span class="nav-version">v1.9.2</span>
+          <span class="nav-version">v1.10.0</span>
         </a>
       </div>
     </div>
@@ -223,6 +223,9 @@
           <div class="memory-copy">
             <h3>context.md, in the project root</h3>
             <p>Snapshot, current work as Now / Blocked / Next, architecture notes, decisions with their reasons, known issues, and dated recent changes. <code>/memory init</code> creates it from the repository's detected stack. It is plain Markdown, so it works with any editor and any agent, including the CLIs run outside thwip.</p>
+
+            <h3>Only the relevant sections are sent</h3>
+            <p>The file is split at its headings and ranked against your message with BM25, the keyword formula behind search engines. The head always goes; the rest goes by relevance within a budget, and a warm session is only sent sections it has not seen. Measured with thwip's evaluation harness: on a file longer than the old cut-off, every provider answered a buried fact directly, with 593 characters of memory instead of 8,286.</p>
 
             <h3>An Obsidian vault, connected on first run</h3>
             <p>thwip detects vaults registered with the Obsidian desktop app, or creates a folder. Each project gets an index card; hub notes are generated per stack, area, and tag; a dashboard lists everything. Projects that share a stack, area, or tag link to each other, which is what makes the graph useful. Only notes carrying <code>generated_by: thwip</code> are ever overwritten. Your own notes stay yours.</p>
@@ -558,7 +561,7 @@ generated_by: thwip
       <div class="footer-links">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">CLI Repository</a>
         <a href="https://github.com/tanmayhutt/thwip-website" target="_blank" rel="noopener noreferrer">Website Repository</a>
-        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.9.2)</a>
+        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.10.0)</a>
       </div>
       <div class="footer-right">
         <span>MIT License</span>
