@@ -80,7 +80,7 @@
       <div class="nav-actions">
         <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer" class="btn-cta">
           <span>PyPI</span>
-          <span class="nav-version">v1.16.2</span>
+          <span class="nav-version">v1.17.0</span>
         </a>
       </div>
     </div>
@@ -329,7 +329,7 @@ generated_by: thwip
         <ul class="bench-notes">
           <li>Tasks: streaming contract, exact instruction, read-file tool round trip, path guard, tool-schema consistency, deep recall from a long memory file, handoff recall, compaction recall, a real file edit, honesty about a missing file, recall of archived turns, a schema-valid structured summary, and the compaction worker rule.</li>
           <li>Native CLIs use their own tools, so most tool tasks score their final answer only; the note column says when that applied. The edit task checks the file on disk.</li>
-          <li>Latency includes each CLI's own startup and system prompt. Antigravity's time is its own per-turn work, not the connection: 54 s on home Wi-Fi and 51 s on a phone hotspot with one process per turn. Since v1.16.2 thwip keeps one Antigravity process open per conversation, which pays its 12 s of account checks once: measured through the REPL, 41 s for the first turn and 22 s for the next ones.</li>
+          <li>Latency includes each CLI's own startup and system prompt. Antigravity's time is its own per-turn work, not the connection: 54 s on home Wi-Fi and 51 s on a phone hotspot with one process per turn. Since v1.17.0 thwip keeps one Antigravity process open per conversation, which pays its 12 s of account checks once: measured through the REPL, 41 s for the first turn and 22 s for the next ones.</li>
           <li>One machine, one day, one run per task; earlier full runs from 2026-10-04 are kept in the repository next to this one. Latency varies with provider load between runs; pass counts have been stable except for Antigravity, which moves by one depending on whether it reaches for a tool that its headless mode then declines.</li>
           <li>What the results mean. thwip adds no restriction to a native CLI by design: each keeps its own tools, sandbox and settings, and the questions it would ask you are relayed to the thwip prompt (Codex and Claude Code). So the path-guard task, which tests thwip's own tools, is marked not applicable for native CLIs. Antigravity cannot relay questions in headless mode and declines such tools itself, which is what its empty answers are; thwip prints its explanation. The file-edit task approves each CLI's own write question and all three edit the file correctly.</li>
         </ul>
@@ -590,7 +590,7 @@ generated_by: thwip
       <div class="footer-links">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">CLI Repository</a>
         <a href="https://github.com/tanmayhutt/thwip-website" target="_blank" rel="noopener noreferrer">Website Repository</a>
-        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.16.2)</a>
+        <a href="https://pypi.org/project/thwip-cli/" target="_blank" rel="noopener noreferrer">PyPI Package (v1.17.0)</a>
       </div>
       <div class="footer-right">
         <span>MIT License</span>
