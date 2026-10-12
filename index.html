@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>thwip | The open source AI coding agent multiplexer</title>
-  <meta name="description" content="Open source terminal multiplexer for configured AI model providers. Keep portable text history, use confirmed local tools, and switch providers in one REPL.">
+  <title>thwip | One terminal for Codex, Claude Code and Antigravity</title>
+  <meta name="description" content="Open source terminal that drives the Codex, Claude Code and Antigravity CLIs through their own sign-ins. Switch CLIs mid-conversation, fail over on usage limits, relay their permission questions, and keep one memory file per project.">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,11 +91,11 @@
     <section class="hero-section">
       <div class="container">
         <p class="hero-kicker">Open source. Python. Runs in your terminal.</p>
-        <h1 class="hero-title">One terminal for the coding agents you already pay for.</h1>
+        <h1 class="hero-title">One terminal for the coding CLIs you already pay for.</h1>
         <p class="hero-subtitle">
           thwip finds Codex, Claude Code, and the Antigravity CLI already signed in on your machine and lets you use them from one
           REPL. Switch mid-conversation without losing the thread, fail over the moment a usage limit hits, and keep one memory file per
-          project that every agent reads and maintains.
+          project that every CLI reads and maintains.
         </p>
 
         <ul class="hero-facts" aria-label="What thwip does">
@@ -138,7 +138,7 @@
               <span class="control-dot"></span>
             </div>
             <div class="terminal-title">
-              <span id="term-status-badge" class="term-badge badge-anthropic">Anthropic Claude</span>
+              <span id="term-status-badge" class="term-badge badge-anthropic">Claude Code</span>
               <span>thwip ~/Developer/Projects/backend [session: auth-refactor]</span>
             </div>
             <div>
@@ -154,7 +154,7 @@
             <div class="status-left">
               <span id="bar-agent-label" class="status-agent" style="color: #D97757;">claude</span>
               <span class="status-sep">|</span>
-              <span id="bar-model-label" class="status-model">claude-opus-5</span>
+              <span id="bar-model-label" class="status-model">fable</span>
               <span class="status-sep">|</span>
               <span class="status-caps" id="bar-caps">
                 <span class="cap-item cap-active">[chat]</span>
@@ -166,8 +166,6 @@
             </div>
             <div class="status-right">
               <span id="bar-tokens">1,482 tok</span>
-              <span class="status-sep">|</span>
-              <span id="bar-cost">$0.0084</span>
             </div>
           </div>
         </div>
@@ -200,13 +198,13 @@
             <span class="flow-index">03</span>
             <div>
               <h3>A usage limit becomes a switch, not a stop</h3>
-              <p>When Codex reports "you've hit your usage limit", Claude Code rejects a rate limit, Google returns <code>RESOURCE_EXHAUSTED</code>, or an API answers 429, thwip lists the ready alternatives and re-sends your unanswered message to the one you pick. <code>/limits</code> shows each account's 5-hour and 7-day windows, and thwip warns you once a window is 85 percent used and names the ready alternatives, so you can switch before the wall. When the conversation itself nears the model's context window, thwip offers to compact: older turns are summarised by a different ready provider, never the one running out, and recent turns stay word for word.</p>
+              <p>When Codex reports "you've hit your usage limit", Claude Code rejects a rate limit, Google returns <code>RESOURCE_EXHAUSTED</code>, or an API answers 429, thwip lists the ready alternatives and re-sends your unanswered message to the one you pick. <code>/limits</code> shows each account's 5-hour and 7-day windows, and thwip warns you once a window is 85 percent used and names the ready alternatives, so you can switch before the wall. When the conversation itself nears the model's context window, thwip offers to compact: older turns are summarised by a different ready provider, never the one running out, and recent turns stay word for word. Every path, command and error from the dropped turns is checked against the summary and added back if missing.</p>
             </div>
           </li>
           <li class="flow-step">
             <span class="flow-index">04</span>
             <div>
-              <h3>The project remembers, whichever agent you used</h3>
+              <h3>The project remembers, whichever CLI you used</h3>
               <p>Every provider receives the project's <code>context.md</code> as instructions. After a real conversation, <code>/memory update</code> asks the current model for a revision, shows you the diff, and writes only when you confirm. Nothing is written silently.</p>
             </div>
           </li>
@@ -242,7 +240,7 @@
 project: thwip
 area: Developer Tools
 status: active
-updated: 2026-09-25
+updated: 2026-10-12
 stack: [Python, rich, prompt-toolkit, httpx, Vite, JavaScript]
 context_path: /Users/tanmay/Developer/Projects/thwip/context.md
 generated_by: thwip
@@ -329,19 +327,21 @@ generated_by: thwip
         <figure class="arch-figure">
           <svg viewBox="0 0 900 300" role="img" aria-labelledby="arch-title arch-desc" xmlns="http://www.w3.org/2000/svg">
             <title id="arch-title">thwip architecture</title>
-            <desc id="arch-desc">The REPL sends messages to a session layer with portable history, warm native sessions, failover, and project memory. Native adapters drive Codex, Claude Code, and Antigravity through their protocols; direct adapters call provider APIs with keys. Project memory is filed into a vault.</desc>
+            <desc id="arch-desc">The REPL sends messages to a session layer with portable history, warm native sessions, failover, permission relay, and project memory. Native adapters drive Codex, Claude Code, and Antigravity through their protocols; direct adapters call provider APIs and your own OpenAI-compatible servers. Project memory is filed into a vault.</desc>
             <g font-family="JetBrains Mono, monospace" font-size="13" fill="#F1ECEC">
               <rect x="20" y="110" width="150" height="80" fill="#141312" stroke="#33302D"/>
               <text x="95" y="145" text-anchor="middle">thwip REPL</text>
               <text x="95" y="166" text-anchor="middle" fill="#8E8B8B" font-size="11">/switch /memory !cmd</text>
 
-              <rect x="230" y="60" width="220" height="180" fill="#141312" stroke="#F1ECEC"/>
-              <text x="340" y="88" text-anchor="middle">Session layer</text>
-              <text x="340" y="116" text-anchor="middle" fill="#BCBBBB" font-size="11">portable text history</text>
-              <text x="340" y="138" text-anchor="middle" fill="#BCBBBB" font-size="11">warm native sessions</text>
-              <text x="340" y="160" text-anchor="middle" fill="#BCBBBB" font-size="11">usage-limit failover</text>
-              <text x="340" y="182" text-anchor="middle" fill="#BCBBBB" font-size="11">project memory injection</text>
-              <text x="340" y="204" text-anchor="middle" fill="#BCBBBB" font-size="11">handoff preview</text>
+              <rect x="230" y="50" width="220" height="212" fill="#141312" stroke="#F1ECEC"/>
+              <text x="340" y="78" text-anchor="middle">Session layer</text>
+              <text x="340" y="106" text-anchor="middle" fill="#BCBBBB" font-size="11">portable text history</text>
+              <text x="340" y="128" text-anchor="middle" fill="#BCBBBB" font-size="11">warm native sessions</text>
+              <text x="340" y="150" text-anchor="middle" fill="#BCBBBB" font-size="11">usage-limit failover</text>
+              <text x="340" y="172" text-anchor="middle" fill="#BCBBBB" font-size="11">permission relay</text>
+              <text x="340" y="194" text-anchor="middle" fill="#BCBBBB" font-size="11">compaction and recall</text>
+              <text x="340" y="216" text-anchor="middle" fill="#BCBBBB" font-size="11">project memory injection</text>
+              <text x="340" y="238" text-anchor="middle" fill="#BCBBBB" font-size="11">handoff preview</text>
 
               <rect x="520" y="30" width="170" height="44" fill="#141312" stroke="#10A37F"/>
               <text x="605" y="57" text-anchor="middle">Codex App Server</text>
@@ -350,7 +350,7 @@ generated_by: thwip
               <rect x="520" y="150" width="170" height="44" fill="#141312" stroke="#4285F4"/>
               <text x="605" y="177" text-anchor="middle">Antigravity print</text>
               <rect x="520" y="210" width="170" height="44" fill="#141312" stroke="#8E8B8B"/>
-              <text x="605" y="237" text-anchor="middle" fill="#BCBBBB">Direct APIs (keys)</text>
+              <text x="605" y="237" text-anchor="middle" fill="#BCBBBB">Direct / your own APIs</text>
 
               <rect x="740" y="90" width="140" height="104" fill="#141312" stroke="#CFCECD"/>
               <text x="810" y="120" text-anchor="middle">context.md</text>
@@ -359,10 +359,10 @@ generated_by: thwip
 
               <path d="M170 150H230" stroke="#8E8B8B" stroke-width="1.5"/>
               <path d="M450 100L520 52M450 130L520 112M450 160L520 172M450 190L520 232" stroke="#8E8B8B" stroke-width="1.2"/>
-              <path d="M450 230C500 280 700 280 740 190" stroke="#CFCECD" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
+              <path d="M450 250C500 290 700 290 740 190" stroke="#CFCECD" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>
             </g>
           </svg>
-          <figcaption>Native adapters reuse each CLI's own login, tools, and approvals. Direct adapters use provider keys and thwip's project-scoped tools. The memory file is shared by all of them.</figcaption>
+          <figcaption>Native adapters reuse each CLI's own login, tools, and approvals, and relay its questions to you. Direct adapters use provider keys or any OpenAI-compatible server you add, with thwip's project-scoped tools. The memory file is shared by all of them.</figcaption>
         </figure>
       </div>
     </section>
@@ -490,19 +490,19 @@ generated_by: thwip
             <tbody>
               <tr>
                 <td><code>/switch</code></td>
-                <td><code>&lt;agent&gt; [model]</code></td>
-                <td>Hot-swaps active agent and model mid-conversation with zero lost context</td>
+                <td><code>&lt;cli&gt; [model]</code></td>
+                <td>Switch the active CLI, or its model, mid-conversation; the conversation carries over as text</td>
                 <td><code>/switch google gemini-3.7-flash</code></td>
               </tr>
               <tr>
-                <td><code>/agents</code></td>
+                <td><code>/agents</code> or <code>/clis</code></td>
                 <td>None</td>
-                <td>Lists discovered local agents, API readiness, and detected CLI-only authentication</td>
+                <td>Lists the discovered CLIs, direct API readiness, and your own providers</td>
                 <td><code>/agents</code></td>
               </tr>
               <tr>
                 <td><code>/models</code></td>
-                <td><code>[agent]</code></td>
+                <td><code>[cli]</code></td>
                 <td>Displays available models, context window limits, and pricing for a provider</td>
                 <td><code>/models openai</code></td>
               </tr>
@@ -515,13 +515,13 @@ generated_by: thwip
               <tr>
                 <td><code>/limits</code></td>
                 <td>None</td>
-                <td>Inspects live session tokens, cumulative costs, and rate limit quotas</td>
+                <td>Token usage, each CLI account's 5-hour and 7-day windows with reset times, and spend for direct API use</td>
                 <td><code>/limits</code></td>
               </tr>
               <tr>
                 <td><code>/tools</code></td>
                 <td>None</td>
-                <td>Lists available universal tools (read, edit, write, run, bash, git)</td>
+                <td>Lists thwip's own tools (read, edit, write, run, bash, git), used only with direct API providers; native CLIs use their own</td>
                 <td><code>/tools</code></td>
               </tr>
               <tr>
@@ -533,7 +533,7 @@ generated_by: thwip
               <tr>
                 <td><code>/session save</code></td>
                 <td><code>&lt;name&gt;</code></td>
-                <td>Persists the current conversation history and file changes to disk</td>
+                <td>Saves the conversation with its project and the CLIs' native session IDs</td>
                 <td><code>/session save refactor-auth</code></td>
               </tr>
               <tr>
@@ -545,12 +545,12 @@ generated_by: thwip
               <tr>
                 <td><code>/model</code></td>
                 <td><code>[id]</code></td>
-                <td>Pick a model for the current agent from a numbered list or by ID</td>
+                <td>Pick a model for the current CLI from a numbered list or by ID</td>
                 <td><code>/model</code></td>
               </tr>
               <tr>
                 <td><code>/handoff</code></td>
-                <td><code>[agent] [model]</code></td>
+                <td><code>[cli] [model]</code></td>
                 <td>Preview what transfers, what is lost, and the context fit before switching</td>
                 <td><code>/handoff google</code></td>
               </tr>
@@ -561,7 +561,7 @@ generated_by: thwip
                 <td><code>/compact</code></td>
               </tr>
               <tr>
-                <td><code>/new</code> and <code>/resume</code></td>
+                <td><code>/new</code> and <code>/resume</code> or <code>/continue</code></td>
                 <td><code>[name]</code></td>
                 <td>Start a fresh conversation (the current one is saved) or resume a saved one from a list</td>
                 <td><code>/resume</code></td>
@@ -581,7 +581,7 @@ generated_by: thwip
               <tr>
                 <td><code>/prompt</code></td>
                 <td><code>[set|save|reset]</code></td>
-                <td>Your standing instructions for every assistant. thwip imposes no persona; it adds only a neutral note and the project memory</td>
+                <td>Your standing instructions for every CLI. thwip imposes no persona; it adds only a neutral note and the project memory</td>
                 <td><code>/prompt set Answer in Hindi</code></td>
               </tr>
               <tr>
@@ -671,13 +671,13 @@ generated_by: thwip
               <tr>
                 <td><code>Ctrl + S</code></td>
                 <td>Hotkey</td>
-                <td>Interactive agent and model switch prompt popup</td>
+                <td>Interactive CLI and model switch prompt</td>
                 <td>Hotkey</td>
               </tr>
               <tr>
                 <td><code>Ctrl + T</code></td>
                 <td>Hotkey</td>
-                <td>Live agent status, token counters, and active provider info</td>
+                <td>Live CLI status, token counters, and active provider info</td>
                 <td>Hotkey</td>
               </tr>
               <tr>
@@ -689,7 +689,7 @@ generated_by: thwip
               <tr>
                 <td><code>/exit</code> or <code>/quit</code></td>
                 <td>None</td>
-                <td>Exits the thwip terminal multiplexer</td>
+                <td>Exits thwip; offers a memory update once if the conversation had content</td>
                 <td><code>/exit</code></td>
               </tr>
             </tbody>
@@ -705,7 +705,7 @@ generated_by: thwip
     <div class="container footer-container">
       <div>
         <span style="font-weight: 700; color: #FFFFFF; font-family: var(--font-mono);">thwip</span>
-        <span style="color: var(--text-dim); margin-left: 8px; font-size: 13px;">Universal Coding Agent Multiplexer</span>
+        <span style="color: var(--text-dim); margin-left: 8px; font-size: 13px;">One terminal for your coding CLIs</span>
       </div>
       <div class="footer-links">
         <a href="https://github.com/tanmayhutt/thwip-cli" target="_blank" rel="noopener noreferrer">CLI Repository</a>
