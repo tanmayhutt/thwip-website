@@ -71,6 +71,7 @@
         <a href="#how-it-works">How it works</a>
         <a href="#demo">Demo</a>
         <a href="#memory">Project memory</a>
+        <a href="#features">Features</a>
         <a href="#benchmark">Benchmark</a>
         <a href="#providers">Providers</a>
         <a href="#commands">Commands</a>
@@ -266,6 +267,58 @@ generated_by: thwip
       </div>
     </section>
 
+    <section id="features" class="features-section">
+      <div class="container">
+        <div class="section-headline">
+          <h2>Everything else it does</h2>
+          <p>thwip is a wrapper, not a cage. Each CLI keeps its own tools, sandbox and settings. These are the parts that sit around them.</p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-item">
+            <h3>No restrictions of its own</h3>
+            <p>Codex runs in its workspace sandbox and asks through thwip before anything beyond it. Claude Code keeps its own tools and your settings; anything that would prompt arrives as a y/N question in thwip. Antigravity cannot relay questions headless, so a declined tool is shown with the CLI's own explanation. <code>/permissions</code> prints this summary.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Your own models</h3>
+            <p><code>/providers add</code> registers any server that speaks the OpenAI chat protocol: llama.cpp, LM Studio, vLLM, Ollama's <code>/v1</code>, a company gateway, or a hosted API. Give it a name and a base URL; thwip lists the models from the server. It then appears in <code>/switch</code>, the fallback chain, and as a compaction worker.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Images go to the CLI's own input</h3>
+            <p><code>@shot.png</code> in a message sends the picture to the CLI's image input instead of reading it as text. Codex receives the local path, Claude Code receives the image inline, Antigravity receives the path and may open it with its own tools.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Compaction that keeps the exact items</h3>
+            <p>Older turns are summarised by a different ready provider, never the one running out. Every path, command, error, code word, URL and version in the dropped turns is checked against the summary; anything missing is asked for again, then appended verbatim. Archived turns stay searchable with <code>/recall</code>.</p>
+          </div>
+          <div class="feature-item">
+            <h3>A small handoff before a big switch</h3>
+            <p>A switch sends the live conversation to the new CLI. When that transfer would fill a large share of the new window, thwip says how many tokens it is and offers to compact first. <code>/handoff</code> shows the same numbers without switching.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Start from your home folder</h3>
+            <p><code>--project PATH</code> always wins. Otherwise the folder you start in is the project. From your home folder, the last project is the default and a picker offers the rest, including New project, which creates the folder and its <code>context.md</code>. Sessions remember their project.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Antigravity stays open</h3>
+            <p>Starting <code>agy</code> costs about 12 seconds of account checks before the model is asked, so thwip keeps one process per conversation and sends each new message to it. Measured: 41 s for the first turn, 22 s for the next ones. Codex keeps its app server open; Claude Code starts fast and resumes by session ID.</p>
+          </div>
+          <div class="feature-item">
+            <h3>The commands you already type</h3>
+            <p>Each CLI's own wording is accepted: <code>/clis</code>, <code>/agents</code> or <code>/list</code>; <code>/resume</code> or <code>/continue</code>; <code>/init</code> for the memory file; <code>/status</code> or <code>/context</code>; <code>/permissions</code> or <code>/approvals</code>. <code>/switch</code> changes the CLI, <code>/model</code> changes the model inside it.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Runs on Windows too</h3>
+            <p>The package is pure Python. CI runs the full test suite, the offline harness and the build on a Windows runner as well as Linux, so one wheel runs on macOS, Linux and Windows. Native CLIs must themselves support the platform.</p>
+          </div>
+          <div class="feature-item">
+            <h3>Auditable handoffs</h3>
+            <p><code>/handoff</code> previews what transfers, what is lost and the context fit before any switch, locally and without a model call. <code>/export</code> writes the conversation to Markdown with per-message model attribution, and <code>/history</code> shows which model answered each turn.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="figures-section">
       <div class="container">
         <div class="section-headline">
@@ -404,6 +457,13 @@ generated_by: thwip
                 <td>Provider-dependent</td>
                 <td>Chat, Edit, Run, Term, Git</td>
               </tr>
+              <tr>
+                <td><strong>Your own server</strong></td>
+                <td>Whatever the server lists from <code>/models</code></td>
+                <td><code>/providers add</code>, saved as <code>[providers.&lt;name&gt;]</code></td>
+                <td>Server-dependent</td>
+                <td>Chat, Edit, Run, Term, Git</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -497,7 +557,7 @@ generated_by: thwip
               <tr>
                 <td><code>/compact</code></td>
                 <td>None</td>
-                <td>Summarize the conversation with the current model; the plain-text summary travels across providers</td>
+                <td>Summarize older turns on another ready provider with an exact-item coverage check; recent turns stay verbatim and the summary travels across providers</td>
                 <td><code>/compact</code></td>
               </tr>
               <tr>
@@ -547,6 +607,66 @@ generated_by: thwip
                 <td>None</td>
                 <td>Clears current conversation memory and resets session tokens</td>
                 <td><code>/clear</code></td>
+              </tr>
+              <tr>
+                <td><code>/permissions</code> or <code>/approvals</code></td>
+                <td>None</td>
+                <td>Explain how each CLI's own permission questions reach you; thwip adds no restrictions of its own</td>
+                <td><code>/permissions</code></td>
+              </tr>
+              <tr>
+                <td><code>/providers</code></td>
+                <td><code>[add|remove|list]</code></td>
+                <td>Register any OpenAI-compatible server as a provider, with its live model list</td>
+                <td><code>/providers add</code></td>
+              </tr>
+              <tr>
+                <td><code>/project</code></td>
+                <td><code>[path]</code></td>
+                <td>Show or change the project folder; bare <code>/project</code> opens the picker with New project</td>
+                <td><code>/project ~/Developer/api</code></td>
+              </tr>
+              <tr>
+                <td><code>/recall</code></td>
+                <td><code>&lt;query&gt;</code></td>
+                <td>Search the turns archived by compaction and bring the matching ones back</td>
+                <td><code>/recall migration error</code></td>
+              </tr>
+              <tr>
+                <td><code>/status</code> or <code>/context</code></td>
+                <td>None</td>
+                <td>Current CLI, model, project, native session IDs and token stats</td>
+                <td><code>/status</code></td>
+              </tr>
+              <tr>
+                <td><code>/key</code></td>
+                <td><code>[provider]</code></td>
+                <td>Enter a direct API key without placing it in prompt history</td>
+                <td><code>/key openai</code></td>
+              </tr>
+              <tr>
+                <td><code>/detect</code></td>
+                <td>None</td>
+                <td>Re-scan installed CLIs and reconnect their sign-ins</td>
+                <td><code>/detect</code></td>
+              </tr>
+              <tr>
+                <td><code>/native</code></td>
+                <td><code>&lt;cli&gt;</code></td>
+                <td>Save the session and leave thwip for the installed CLI itself; a launcher, no context transfer</td>
+                <td><code>/native codex</code></td>
+              </tr>
+              <tr>
+                <td><code>/session list</code>, <code>/cost</code></td>
+                <td>None</td>
+                <td>List saved sessions with their project; show estimated session and cumulative cost for direct API use</td>
+                <td><code>/session list</code></td>
+              </tr>
+              <tr>
+                <td><code>@shot.png</code></td>
+                <td>In a message</td>
+                <td>Send an image to the CLI's own image input instead of reading it as text</td>
+                <td><code>What is in @shot.png</code></td>
               </tr>
               <tr>
                 <td><code>Ctrl + S</code></td>
