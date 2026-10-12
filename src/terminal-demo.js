@@ -42,7 +42,7 @@ export class TerminalDemo {
     this.schedule(() => {
       this.appendElement(`
         <div class="t-prompt">
-          <span class="t-user-label">You &gt;</span>
+          <span class="t-user-label" style="color: #D97757;">You &#9654;</span>
           <span class="t-user-query">Add API-key auth to the middleware and cover it with pytest.</span>
         </div>
       `);
@@ -122,7 +122,7 @@ export class TerminalDemo {
     this.schedule(() => {
       this.appendElement(`
         <div class="t-prompt" style="margin-top: 14px;">
-          <span class="t-user-label" style="color: #E2E8F0;">You &gt;</span>
+          <span class="t-user-label" style="color: #4285F4;">You &#9654;</span>
           <span style="color: #38BDF8; font-weight: 700;">/memory update</span>
         </div>
         <div class="t-tool-box" style="border-left-color: #CFCECD;">
